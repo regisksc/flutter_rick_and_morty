@@ -1,4 +1,4 @@
-# flutter_ricky_morty
+# flutter_rick_morty
 
 A new Flutter project.
 
