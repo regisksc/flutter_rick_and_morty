@@ -1,0 +1,59 @@
+{
+  // Use IntelliSense to learn about possible attributes.
+  // Hover to view descriptions of existing attributes.
+  // For more information, visit: https://go.microsoft.com/fwlink/?linkid=830387
+  "version": "0.2.0",
+  "configurations": [
+    {
+      "name": "Rick and Morty all tests",
+      "type": "dart",
+      "request": "launch",
+      "program": "./test/"
+    },
+    {
+      "name": "Rick and Morty (Development)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main/dev.dart",
+      "args": ["--flavor", "dev"]
+    },
+    {
+      "name": "Rick and Morty (Development) (Profile)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main/dev.dart",
+      "args": ["--flavor", "dev"],
+      "flutterMode": "profile"
+    },
+    {
+      "name": "Rick and Morty (QA)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main/qa.dart",
+      "args": ["--flavor", "qa"]
+    },
+    {
+      "name": "Rick and Morty (QA) (Profile)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main/qa.dart",
+      "args": ["--flavor", "qa"],
+      "flutterMode": "profile"
+    },
+    {
+      "name": "Rick and Morty (Production)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main/prod.dart",
+      "args": ["--flavor", "prod"]
+    },
+    {
+      "name": "Rick and Morty (Production) (Profile)",
+      "request": "launch",
+      "type": "dart",
+      "program": "lib/main/prod.dart",
+      "args": ["--flavor", "prod"],
+      "flutterMode": "profile"
+    }
+  ]
+}
