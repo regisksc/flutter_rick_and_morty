@@ -1,4 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
 import 'flavors.dart';
 import 'pages/my_home_page.dart';
 
