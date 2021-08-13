@@ -3,6 +3,6 @@ import 'app.dart';
 import 'flavors.dart';
 
 void main() {
-  F.appFlavor = Flavor.PROD;
+  F.appFlavor = Flavor.prod;
   runApp(App());
 }

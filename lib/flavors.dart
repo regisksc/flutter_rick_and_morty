@@ -1,7 +1,7 @@
 enum Flavor {
-  DEV,
-  QA,
-  PROD,
+  dev,
+  qa,
+  prod,
 }
 
 class F {
@@ -9,15 +9,14 @@ class F {
 
   static String get title {
     switch (appFlavor) {
-      case Flavor.DEV:
+      case Flavor.dev:
         return 'Rick and Morty Characters (Dev)';
-      case Flavor.QA:
+      case Flavor.qa:
         return 'Rick and Morty Characters (Testing)';
-      case Flavor.PROD:
+      case Flavor.prod:
         return 'Rick and Morty Characters (Prod)';
       default:
         return 'title';
     }
   }
-
 }
