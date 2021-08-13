@@ -2,10 +2,10 @@
 import 'package:flutter/material.dart';
 
 // Project imports:
-import 'app.dart';
-import 'flavors.dart';
+import '../core/env/flavors.dart';
+import 'app_widget.dart';
 
 void main() {
-  F.appFlavor = Flavor.dev;
+  AppFlavor.current = Flavor.dev;
   runApp(App());
 }

@@ -4,11 +4,11 @@ enum Flavor {
   prod,
 }
 
-class F {
-  static Flavor? appFlavor;
+class AppFlavor {
+  static Flavor? current;
 
   static String get title {
-    switch (appFlavor) {
+    switch (current) {
       case Flavor.dev:
         return 'Rick and Morty Characters (Dev)';
       case Flavor.qa:
