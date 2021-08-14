@@ -104,7 +104,6 @@
 				E48A1ECF626A3FAF3EE16402 /* Pods-Runner.profile-prod.xcconfig */,
 				02269615ACBD428ABF08DCE7 /* Pods-Runner.release-prod.xcconfig */,
 			);
-			name = Pods;
 			path = Pods;
 			sourceTree = "<group>";
 		};
@@ -428,6 +427,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 7CB5C1D88658D029EE2202E7 /* Pods-Runner.debug-dev.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-dev";
 				PRODUCT_NAME = Runner;
 			};
 			name = "Debug-dev";
@@ -436,6 +436,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = FFF9AFAE48FF6176F4ABB774 /* Pods-Runner.profile-dev.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-dev";
 				PRODUCT_NAME = Runner;
 			};
 			name = "Profile-dev";
@@ -444,6 +445,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = B0046182275F67E155F3CA09 /* Pods-Runner.release-dev.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-dev";
 				PRODUCT_NAME = Runner;
 			};
 			name = "Release-dev";
@@ -452,6 +454,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 235E5B3E755B5ABBA949F939 /* Pods-Runner.debug-qa.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-qa";
 				PRODUCT_NAME = Runner;
 			};
 			name = "Debug-qa";
@@ -460,6 +463,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 9DE775A9FF23503D278A9B1D /* Pods-Runner.profile-qa.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-qa";
 				PRODUCT_NAME = Runner;
 			};
 			name = "Profile-qa";
@@ -468,6 +472,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = C447E2070EA1C287C8939905 /* Pods-Runner.release-qa.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-qa";
 				PRODUCT_NAME = Runner;
 			};
 			name = "Release-qa";
@@ -476,6 +481,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E00B464BE5A880E4F600D2F7 /* Pods-Runner.debug-prod.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-prod";
 				PRODUCT_NAME = Runner;
 			};
 			name = "Debug-prod";
@@ -484,6 +490,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = E48A1ECF626A3FAF3EE16402 /* Pods-Runner.profile-prod.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-prod";
 				PRODUCT_NAME = Runner;
 			};
 			name = "Profile-prod";
@@ -492,6 +499,7 @@
 			isa = XCBuildConfiguration;
 			baseConfigurationReference = 02269615ACBD428ABF08DCE7 /* Pods-Runner.release-prod.xcconfig */;
 			buildSettings = {
+				ASSETCATALOG_COMPILER_APPICON_NAME = "AppIcon-prod";
 				PRODUCT_NAME = Runner;
 			};
 			name = "Release-prod";
@@ -501,7 +509,7 @@
 			baseConfigurationReference = D7E37A46194EACEF22512AA6 /* prodRelease.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "$(ASSET_PREFIX)AppIcon";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -571,7 +579,7 @@
 			baseConfigurationReference = 8C18729B3B22AF83A7F9EDB5 /* devRelease.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "$(ASSET_PREFIX)AppIcon";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -640,7 +648,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "$(ASSET_PREFIX)AppIcon";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -858,7 +866,7 @@
 			baseConfigurationReference = 37C4D22859D2E52A6086D86B /* devDebug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "$(ASSET_PREFIX)AppIcon";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -931,7 +939,7 @@
 			baseConfigurationReference = DDA4923C69BE54DE2F8F2626 /* qaDebug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "$(ASSET_PREFIX)AppIcon";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1003,7 +1011,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "$(ASSET_PREFIX)AppIcon";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1071,7 +1079,7 @@
 			baseConfigurationReference = E95FAEE0A9DC98C97CA77859 /* qaRelease.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "$(ASSET_PREFIX)AppIcon";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1141,7 +1149,7 @@
 			baseConfigurationReference = 6937682EC375F6CA6C63719C /* prodDebug.xcconfig */;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "$(ASSET_PREFIX)AppIcon";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";
@@ -1213,7 +1221,7 @@
 			isa = XCBuildConfiguration;
 			buildSettings = {
 				ALWAYS_SEARCH_USER_PATHS = NO;
-				ASSETCATALOG_COMPILER_APPICON_NAME = "$(ASSET_PREFIX)AppIcon";
+				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CLANG_ANALYZER_NONNULL = YES;
 				CLANG_CXX_LANGUAGE_STANDARD = "gnu++0x";
 				CLANG_CXX_LIBRARY = "libc++";

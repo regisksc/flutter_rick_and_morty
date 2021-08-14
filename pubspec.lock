@@ -109,6 +109,13 @@ packages:
       url: "https://pub.dartlang.org"
     source: hosted
     version: "2.0.0"
+  flutter_launcher_icons:
+    dependency: "direct dev"
+    description:
+      name: flutter_launcher_icons
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "0.9.1"
   flutter_test:
     dependency: "direct dev"
     description: flutter
@@ -119,13 +126,20 @@ packages:
     description: flutter
     source: sdk
     version: "0.0.0"
+  image:
+    dependency: transitive
+    description:
+      name: image
+      url: "https://pub.dartlang.org"
+    source: hosted
+    version: "3.0.2"
   import_sorter:
     dependency: "direct dev"
     description:
       name: import_sorter
       url: "https://pub.dartlang.org"
     source: hosted
-    version: "4.6.0"
+    version: "4.4.2"
   integration_test:
     dependency: "direct dev"
     description: flutter
