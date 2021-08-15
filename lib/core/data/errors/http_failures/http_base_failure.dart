@@ -1,3 +1,4 @@
+// Project imports:
 import '../../../domain/errors/error.dart';
 
 abstract class HttpFailure extends Failure {

@@ -1,3 +1,4 @@
+// Project imports:
 import '../../domain/errors/failures/failures.dart';
 
 class InvalidMapFailure extends Failure {

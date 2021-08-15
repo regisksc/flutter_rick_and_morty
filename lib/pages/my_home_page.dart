@@ -1,4 +1,7 @@
+// Flutter imports:
 import 'package:flutter/material.dart';
+
+// Project imports:
 import '../core/env/flavors.dart';
 
 class MyHomePage extends StatelessWidget {

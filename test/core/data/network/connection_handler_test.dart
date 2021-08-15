@@ -1,7 +1,10 @@
+// Package imports:
 import 'package:data_connection_checker_tv/data_connection_checker.dart';
+import 'package:flutter_test/flutter_test.dart';
+
+// Project imports:
 import 'package:flutter_rick_morty/core/data/network/network.dart';
 import 'package:flutter_rick_morty/core/exports/exports.dart';
-import 'package:flutter_test/flutter_test.dart';
 
 class MockDataConnectionHandler extends Mock implements DataConnectionChecker {}
 
