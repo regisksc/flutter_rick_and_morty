@@ -1,6 +1,5 @@
 import 'package:flutter_rick_morty/core/data/data.dart';
 import 'package:flutter_rick_morty/core/data/http/http.dart';
-import 'package:flutter_rick_morty/core/domain/domain.dart';
 import 'package:flutter_rick_morty/core/exports/exports.dart';
 
 import '../../../../test_utils/constants/data_type_test_constants.dart';
@@ -74,22 +73,6 @@ void main() {
       // assert
       verify(calledRequest());
       expect(extracted, isA<HttpResponse>());
-      verifyNoMoreInteractions(client);
-    },
-  );
-
-  test(
-    'should throw BadRequestFailure on code 400',
-    () async {
-      // arrange
-      mockResponseForCode(httpBadRequest);
-
-      // act
-      final response = sut.request(url: url, method: httpGet);
-
-      // assert
-      verify(calledRequest());
-      // expect(response, throwsA(const BadRequestFailure()));
       verifyNoMoreInteractions(client);
     },
   );
