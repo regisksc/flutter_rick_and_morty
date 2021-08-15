@@ -3,8 +3,8 @@ import '../../data.dart';
 import '../http.dart';
 
 class HttpAdapter implements HttpClient {
-  HttpAdapter(this.client);
-  final Dio client;
+  HttpAdapter(Dio client) : _client = client;
+  final Dio _client;
 
   @override
   Future<Either<HttpFailure, HttpResponse>> request({
@@ -45,15 +45,15 @@ class HttpAdapter implements HttpClient {
   }) async {
     switch (method) {
       case httpGet:
-        return client.get(url, queryParameters: queryParameters, options: options);
+        return _client.get(url, queryParameters: queryParameters, options: options);
       case httpPost:
-        return client.post(url, data: body, options: options);
+        return _client.post(url, data: body, options: options);
       case httpDelete:
-        return client.delete(url, queryParameters: queryParameters, options: options, data: body);
+        return _client.delete(url, queryParameters: queryParameters, options: options, data: body);
       case httpPut:
-        return client.put(url, queryParameters: queryParameters, options: options, data: body);
+        return _client.put(url, queryParameters: queryParameters, options: options, data: body);
       case httpPatch:
-        return client.patch(url, queryParameters: queryParameters, options: options, data: body);
+        return _client.patch(url, queryParameters: queryParameters, options: options, data: body);
     }
   }
 
