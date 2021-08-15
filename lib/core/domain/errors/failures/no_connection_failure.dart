@@ -1,6 +1,6 @@
 import 'failures.dart';
 
-class NoConnectionFailure extends BaseFailure {
+class NoConnectionFailure extends Failure {
   const NoConnectionFailure()
       : super(
           title: 'Connection Failure',

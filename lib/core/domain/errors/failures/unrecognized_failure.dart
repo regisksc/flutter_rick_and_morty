@@ -1,6 +1,6 @@
 import 'failures.dart';
 
-class UnrecognizedFailure extends BaseFailure {
+class UnrecognizedFailure extends Failure {
   const UnrecognizedFailure()
       : super(
           title: 'Unrecognized Error',
