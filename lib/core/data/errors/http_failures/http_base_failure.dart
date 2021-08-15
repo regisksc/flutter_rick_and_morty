@@ -1,6 +1,6 @@
 import '../../../domain/errors/error.dart';
 
-abstract class HttpFailure extends BaseFailure {
+abstract class HttpFailure extends Failure {
   const HttpFailure(
     this.code, {
     String? message,
