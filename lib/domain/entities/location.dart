@@ -13,7 +13,7 @@ class Location extends Entity {
   });
 
   final int id;
-  final int residentsIds;
+  final List<int> residentsIds;
   final String name;
   final String type;
   final String dimension;

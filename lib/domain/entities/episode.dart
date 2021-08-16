@@ -13,7 +13,7 @@ class Episode extends Entity {
   });
 
   final int id;
-  final int characterIds;
+  final List<int> characterIds;
   final String name;
   final String airDate;
   final String episode;

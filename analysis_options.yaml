@@ -89,7 +89,7 @@ analyzer:
     prefer_const_constructors_in_immutables: error
     prefer_const_declarations: error
     prefer_const_literals_to_create_immutables: error
-    prefer_constructors_over_static_methods: error
+    prefer_constructors_over_static_methods: ignore
     prefer_contains: error
     prefer_equal_for_default_values: error
     prefer_expression_function_bodies: error
