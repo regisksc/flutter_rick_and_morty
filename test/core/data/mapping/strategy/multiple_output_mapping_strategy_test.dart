@@ -25,9 +25,10 @@ void main() {
     () async {
       // act
       final result = sut<ModelMock>(list);
+      final extractedResult = result.fold((failure) => failure, (resultList) => resultList);
 
       // assert
-      expect(result, [
+      expect(extractedResult, [
         ModelMock().fromMap(map),
         ModelMock().fromMap(map),
       ]);
@@ -35,13 +36,17 @@ void main() {
   );
 
   test(
-    'should throw InvalidMapFailure if input map is not List<Map<String, dynamic>>',
+    'should return InvalidMapFailure if input map is not List<Map<String, dynamic>>',
     () async {
       // arrange
       const invalidMap = ['', false, 1];
 
+      // act
+      final result = sut<ModelMock>(invalidMap);
+      final extractedResult = result.fold((failure) => failure, (resultList) => resultList);
+
       // assert
-      expect(() => sut<ModelMock>(invalidMap), throwsA(InvalidMapFailure(invalidMap.runtimeType)));
+      expect(extractedResult, isA<InvalidMapFailure>());
     },
   );
 }

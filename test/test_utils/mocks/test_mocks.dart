@@ -12,3 +12,14 @@ class ModelMock extends Mock with EquatableMixin implements BaseModel {
   @override
   List<Object?> get props => [field];
 }
+
+class NetworkInfoMock extends Mock implements ConnectionHandler {}
+
+class HttpClientMock extends Mock implements HttpClient {}
+
+class SingleOutputMappingStrategyMock extends Mock implements SingleOutputMappingStrategy {}
+
+class MultipleOutputMappingStrategyMock extends Mock implements SingleOutputMappingStrategy {}
+
+// datasources
+class ConcreteRemoteDatasourceMock extends Mock implements ConcreteRemoteDatasource {}
