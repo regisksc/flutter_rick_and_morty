@@ -26,7 +26,6 @@ dev_dependencies:
     sdk: flutter
   flutter_flavorizr: ^2.0.0
   import_sorter: 4.4.2
-  flutter_launcher_icons: ^0.9.1
   mocktail: ^0.1.4
   faker: ^2.0.0
 
