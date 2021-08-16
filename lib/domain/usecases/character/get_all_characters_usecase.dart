@@ -8,7 +8,7 @@ class GetAllCharactersUsecase implements Usecase<List<CharacterEntity>, NoParams
 
   @override
   Future<Either<Failure, List<CharacterEntity>>> call(NoParams params) async {
-    final result = await repository.getAll<CharacterEntity>();
+    final result = await repository.getAll();
     return result;
   }
 }

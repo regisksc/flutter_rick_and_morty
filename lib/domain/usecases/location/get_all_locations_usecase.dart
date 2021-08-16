@@ -8,7 +8,7 @@ class GetAllLocationsUsecase implements Usecase<List<LocationEntity>, NoParams> 
 
   @override
   Future<Either<Failure, List<LocationEntity>>> call(NoParams params) async {
-    final result = await repository.getAll<LocationEntity>();
+    final result = await repository.getAll();
     return result;
   }
 }

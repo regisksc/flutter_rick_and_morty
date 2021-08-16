@@ -1,7 +1,7 @@
-import '../../core/data/models/models.dart';
-import '../../core/exports/app_dependencies.dart';
-import '../../core/resources/extensions/extensions.dart';
-import '../../domain/entities/entities.dart';
+import "../../core/data/models/models.dart";
+import "../../core/exports/app_dependencies.dart";
+import "../../core/resources/extensions/extensions.dart";
+import "../../domain/entities/entities.dart";
 
 class EpisodeModel extends Model {
   EpisodeModel({
@@ -23,14 +23,14 @@ class EpisodeModel extends Model {
 
   static EpisodeModel fromMap(Map<String, dynamic> map) {
     return EpisodeModel(
-      id: int.parse(map['id'].toString()),
-      characterIds: (map['characters'] as List)
+      id: int.parse(map["id"].toString()),
+      characterIds: (map["characters"] as List)
           .stringifyMembers
-          .map((character) => int.parse(character.allAfter('character/')))
+          .map((character) => int.parse(character.allAfter("character/")))
           .toList(),
-      name: map['name'].toString(),
-      airDate: map['airDate'].toString(),
-      episode: map['episode'].toString(),
+      name: map["name"].toString(),
+      airDate: map["airDate"].toString(),
+      episode: map["episode"].toString(),
     );
   }
 
@@ -45,10 +45,18 @@ class EpisodeModel extends Model {
 
   @override
   Map<String, dynamic> get toMap => {
-        'id': id,
-        'name': name,
-        'air_date': airDate,
-        'episode': episode,
-        'characters': characterIds.map((characterId) => 'character/$characterId'),
+        "id": id,
+        "name": name,
+        "air_date": airDate,
+        "episode": episode,
+        "characters": characterIds.map((characterId) => "character/$characterId"),
       };
+}
+
+extension EpisodeModelToEntityList on List<EpisodeModel> {
+  List<EpisodeEntity> get toEntityList {
+    final entities = <EpisodeEntity>[];
+    forEach((model) => entities.add(model.toEntity));
+    return entities;
+  }
 }

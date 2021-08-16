@@ -9,7 +9,7 @@ class GetSomeEpisodesUsecase implements Usecase<List<EpisodeEntity>, List<int>> 
 
   @override
   Future<Either<Failure, List<EpisodeEntity>>> call(List<int> params) async {
-    final result = await repository.getSome<EpisodeEntity>();
+    final result = await repository.getSome(ids: params);
     return result;
   }
 }

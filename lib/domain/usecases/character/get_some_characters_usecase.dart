@@ -9,7 +9,7 @@ class GetSomeCharactersUsecase implements Usecase<List<CharacterEntity>, List<in
 
   @override
   Future<Either<Failure, List<CharacterEntity>>> call(List<int> params) async {
-    final result = await repository.getSome<CharacterEntity>();
+    final result = await repository.getSome(ids: params);
     return result;
   }
 }

@@ -8,7 +8,7 @@ class GetAllEpisodesUsecase implements Usecase<List<EpisodeEntity>, NoParams> {
 
   @override
   Future<Either<Failure, List<EpisodeEntity>>> call(NoParams params) async {
-    final result = await repository.getAll<EpisodeEntity>();
+    final result = await repository.getAll();
     return result;
   }
 }

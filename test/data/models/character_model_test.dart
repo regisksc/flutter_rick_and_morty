@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter_rick_morty/core/exports/exports.dart';
 import 'package:flutter_rick_morty/data/models/models.dart';
-import 'package:flutter_rick_morty/domain/entities/entities.dart';
 
 import '../../test_utils/fixtures/fixture_reader.dart';
 
@@ -37,14 +36,14 @@ void main() {
   );
 
   test(
-    'should create a Character from CharacterModel',
+    'should create a CharacterEntity from CharacterModel',
     () async {
       // arrange
       final object = CharacterModel.fromMap(map);
       // act
       final sut = object.toEntity;
       // assert
-      expect(sut, isA<CharacterEntity>());
+      expect(sut, isA());
     },
   );
 }

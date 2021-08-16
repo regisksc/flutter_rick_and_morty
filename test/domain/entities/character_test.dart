@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   test(
-    'should conver a Character into a CharacterModel',
+    'should conver a CharacterEntity into a CharacterModel',
     () async {
       // arrange
       final entity = CharacterEntity(

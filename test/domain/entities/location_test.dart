@@ -4,7 +4,7 @@ import 'package:flutter_test/flutter_test.dart';
 
 void main() {
   test(
-    'should conver a Location into a CharacterModel',
+    'should conver a LocationEntity into a CharacterModel',
     () async {
       // arrange
       final entity = LocationEntity(

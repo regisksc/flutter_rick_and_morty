@@ -6,13 +6,13 @@ import 'package:flutter_test/flutter_test.dart';
 import 'package:flutter_rick_morty/core/data/network/network.dart';
 import 'package:flutter_rick_morty/core/exports/exports.dart';
 
-class MockDataConnectionHandler extends Mock implements DataConnectionChecker {}
+class DataConnectionMock extends Mock implements DataConnectionChecker {}
 
 void main() {
   late DataConnectionChecker connection;
   late ConnectionHandler sut;
   setUp(() {
-    connection = MockDataConnectionHandler();
+    connection = DataConnectionMock();
     sut = ConnectionHandler(connection);
   });
   test(

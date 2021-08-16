@@ -81,3 +81,11 @@ class CharacterModel extends Model {
         'episode': featuredEpisodeIds.map((episodeId) => 'episode/$episodeId'),
       };
 }
+
+extension CharacterModelToEntityList on List<CharacterModel> {
+  List<CharacterEntity> get toEntityList {
+    final entities = <CharacterEntity>[];
+    forEach((model) => entities.add(model.toEntity));
+    return entities;
+  }
+}

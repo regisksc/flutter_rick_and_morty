@@ -9,7 +9,7 @@ class GetSomeLocationsUsecase implements Usecase<List<LocationEntity>, List<int>
 
   @override
   Future<Either<Failure, List<LocationEntity>>> call(List<int> params) async {
-    final result = await repository.getSome<LocationEntity>();
+    final result = await repository.getSome(ids: params);
     return result;
   }
 }

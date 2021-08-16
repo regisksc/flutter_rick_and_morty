@@ -2,7 +2,6 @@ import 'dart:convert';
 
 import 'package:flutter_rick_morty/core/exports/exports.dart';
 import 'package:flutter_rick_morty/data/models/models.dart';
-import 'package:flutter_rick_morty/domain/domain.dart';
 
 import '../../test_utils/fixtures/fixture_reader.dart';
 
@@ -44,7 +43,7 @@ void main() {
       // act
       final sut = object.toEntity;
       // assert
-      expect(sut, isA<EpisodeEntity>());
+      expect(sut, isA());
     },
   );
 }

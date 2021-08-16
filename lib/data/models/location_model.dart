@@ -52,3 +52,11 @@ class LocationModel extends Model {
         'residents': residentsIds.map((residentId) => 'character/$residentId'),
       };
 }
+
+extension LocationModelToEntityList on List<LocationModel> {
+  List<LocationEntity> get toEntityList {
+    final entities = <LocationEntity>[];
+    forEach((model) => entities.add(model.toEntity));
+    return entities;
+  }
+}

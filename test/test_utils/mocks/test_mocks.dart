@@ -17,6 +17,6 @@ class ModelMock extends Mock with EquatableMixin implements Model {
 
 class FailureMock extends Mock with EquatableMixin implements Failure {}
 
-class NetworkInfoMock extends Mock implements ConnectionHandler {}
+class ConnectionHandlerMock extends Mock implements ConnectionHandler {}
 
 class HttpClientMock extends Mock implements HttpClient {}

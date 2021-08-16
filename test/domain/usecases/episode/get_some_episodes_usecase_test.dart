@@ -22,7 +22,7 @@ void main() {
     'should return List<Episode> on success',
     () async {
       // arrange
-      when(() => repository.getSome<EpisodeEntity>()).thenAnswer((_) async => Right(list));
+      when(() => repository.getSome(ids: List.generate(3, (index) => index))).thenAnswer((_) async => Right(list));
       // act
       final result = await sut(List<int>.generate(3, (index) => index));
       final extractedResult = result.fold(id, id);
@@ -35,7 +35,8 @@ void main() {
     'should return Failure when it fails',
     () async {
       // arrange
-      when(() => repository.getSome<EpisodeEntity>()).thenAnswer((_) async => Left(FailureMock()));
+      when(() => repository.getSome(ids: List.generate(3, (index) => index)))
+          .thenAnswer((_) async => Left(FailureMock()));
       // act
       final result = await sut(List<int>.generate(3, (index) => index));
       final extractedResult = result.fold(id, id);

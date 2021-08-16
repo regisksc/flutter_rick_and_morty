@@ -111,7 +111,7 @@ analyzer:
     prefer_mixin: error
     prefer_null_aware_operators: error
     prefer_relative_imports: error
-    prefer_single_quotes: error
+    prefer_single_quotes: ignore
     prefer_spread_collections: error
     prefer_typing_uninitialized_variables: error
     prefer_void_to_null: error
