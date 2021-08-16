@@ -23,7 +23,7 @@ class EpisodeModel extends Model {
 
   static EpisodeModel fromMap(Map<String, dynamic> map) {
     dynamic results = map;
-    if (map.containsKey('results')) results = results['results'];
+    if (map.containsKey('results')) results = map['results'];
     return EpisodeModel(
       id: int.parse(results["id"].toString()),
       characterIds: (results["characters"] as List)

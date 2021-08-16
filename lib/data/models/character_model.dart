@@ -33,7 +33,7 @@ class CharacterModel extends Model {
 
   static CharacterModel fromMap(Map<String, dynamic> map) {
     dynamic results = map;
-    if (map.containsKey('results')) results = results['results'];
+    if (map.containsKey('results')) results = map['results'];
     return CharacterModel(
       lastLocationId: int.parse(results['location']['url'].toString().allAfter('location/')),
       originaryLocationId: int.parse(results['origin']['url'].toString().allAfter('location/')),

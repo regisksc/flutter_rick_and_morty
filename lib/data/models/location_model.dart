@@ -23,7 +23,7 @@ class LocationModel extends Model {
 
   static LocationModel fromMap(Map<String, dynamic> map) {
     dynamic results = map;
-    if (map.containsKey('results')) results = results['results'];
+    if (map.containsKey('results')) results = map['results'];
     return LocationModel(
       id: int.parse(results['id'].toString()),
       residentsIds: (results['residents'] as List)
