@@ -1,5 +1,6 @@
 // Project imports:
 import 'package:flutter_rick_morty/core/data/data.dart';
+import 'package:flutter_rick_morty/core/domain/domain.dart';
 import 'package:flutter_rick_morty/core/exports/exports.dart';
 
 class ModelMock extends Mock with EquatableMixin implements Model {
@@ -13,6 +14,8 @@ class ModelMock extends Mock with EquatableMixin implements Model {
   @override
   List<Object?> get props => [field];
 }
+
+class FailureMock extends Mock with EquatableMixin implements Failure {}
 
 class NetworkInfoMock extends Mock implements ConnectionHandler {}
 
