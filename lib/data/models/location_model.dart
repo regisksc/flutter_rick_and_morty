@@ -22,6 +22,8 @@ class LocationModel extends Model {
   List<Object?> get props => [id];
 
   static LocationModel fromMap(Map<String, dynamic> map) {
+    dynamic results = map;
+    if (map.containsKey('results')) results = map['results'];
     return LocationModel(
       id: int.parse(map['id'].toString()),
       residentsIds: (map['residents'] as List)

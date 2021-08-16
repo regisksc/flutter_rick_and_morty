@@ -22,6 +22,8 @@ class EpisodeModel extends Model {
   List<Object?> get props => [id];
 
   static EpisodeModel fromMap(Map<String, dynamic> map) {
+    dynamic results = map;
+    if (map.containsKey('results')) results = map['results'];
     return EpisodeModel(
       id: int.parse(map["id"].toString()),
       characterIds: (map["characters"] as List)

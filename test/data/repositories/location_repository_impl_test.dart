@@ -9,6 +9,7 @@ import 'package:flutter_rick_morty/data/models/models.dart';
 import 'package:flutter_rick_morty/data/repositories/repositories.dart';
 import 'package:flutter_rick_morty/domain/domain.dart';
 
+import '../../test_utils/constants/data_type_test_constants.dart';
 import '../../test_utils/fixtures/fixture_reader.dart';
 import '../../test_utils/mocks/datasource_mocks.dart';
 import '../../test_utils/mocks/test_mocks.dart';
@@ -44,7 +45,11 @@ void main() {
   group('Get all Locations', () {
     late HttpRequestParams httpParams;
     setUpAll(() {
-      httpParams = HttpRequestParams(httpMethod: HttpMethod.get, endpoint: makeApiUrl('location'));
+      httpParams = HttpRequestParams(
+        httpMethod: HttpMethod.get,
+        endpoint: makeApiUrl('location'),
+        queryParameters: mockQuery,
+      );
       registerFallbackValue(httpParams);
     });
     test(

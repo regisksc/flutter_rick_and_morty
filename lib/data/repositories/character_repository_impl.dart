@@ -20,11 +20,16 @@ class CharacterRepositoryImpl implements CharacterRepository {
   final ConnectionHandler connectionHandler;
 
   @override
-  Future<Either<Failure, List<CharacterEntity>>> getAll() async {
+  Future<Either<Failure, List<CharacterEntity>>> getAll({int? page = 1}) async {
     late Either<Failure, List<CharacterModel>> result;
     if (await connectionHandler.hasConnection) {
+      final query = {'page': page};
       result = await remoteDataSource.fetchMoreThanOneOutput(
-        httpParams: HttpRequestParams(httpMethod: HttpMethod.get, endpoint: makeApiUrl('character')),
+        httpParams: HttpRequestParams(
+          httpMethod: HttpMethod.get,
+          endpoint: makeApiUrl('character'),
+          queryParameters: query,
+        ),
         modelSerializer: CharacterModel.fromMap,
       );
       return result.map((models) => models.toEntityList);

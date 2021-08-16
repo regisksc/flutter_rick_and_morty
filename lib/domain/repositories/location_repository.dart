@@ -5,7 +5,7 @@ import 'base_repository.dart';
 
 abstract class LocationRepository implements BaseRepository {
   @override
-  Future<Either<Failure, List<LocationEntity>>> getAll();
+  Future<Either<Failure, List<LocationEntity>>> getAll({int? page = 1});
   @override
   Future<Either<Failure, List<LocationEntity>>> getSome({required List<int> ids});
 }

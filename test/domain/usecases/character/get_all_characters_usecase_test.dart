@@ -1,6 +1,5 @@
 import 'package:flutter_rick_morty/core/domain/errors/failures/base_failure.dart';
 import 'package:dartz/dartz.dart';
-import 'package:flutter_rick_morty/core/domain/usecase/usecase_abstraction.dart';
 import 'package:flutter_rick_morty/core/exports/exports.dart';
 import 'package:flutter_rick_morty/domain/domain.dart';
 import 'package:flutter_rick_morty/domain/entities/entities.dart';
@@ -23,9 +22,9 @@ void main() {
     'should return List<CharacterEntity> on success',
     () async {
       // arrange
-      when(() => repository.getAll()).thenAnswer((_) async => Right(list));
+      when(() => repository.getAll(page: any(named: 'page'))).thenAnswer((_) async => Right(list));
       // act
-      final result = await sut(NoParams());
+      final result = await sut(1);
       final extractedResult = result.fold(id, id);
       // assert
       expect(extractedResult, isA<List<CharacterEntity>>());
@@ -36,9 +35,9 @@ void main() {
     'should return Failure when it fails',
     () async {
       // arrange
-      when(() => repository.getAll()).thenAnswer((_) async => Left(FailureMock()));
+      when(() => repository.getAll(page: any(named: 'page'))).thenAnswer((_) async => Left(FailureMock()));
       // act
-      final result = await sut(NoParams());
+      final result = await sut(1);
       final extractedResult = result.fold(id, id);
       // assert
       expect(extractedResult, isA<Failure>());

@@ -32,6 +32,8 @@ class CharacterModel extends Model {
   List<Object?> get props => [id];
 
   static CharacterModel fromMap(Map<String, dynamic> map) {
+    dynamic results = map;
+    if (map.containsKey('results')) results = map['results'];
     return CharacterModel(
       lastLocationId: int.parse(map['location']['url'].toString().allAfter('location/')),
       originaryLocationId: int.parse(map['origin']['url'].toString().allAfter('location/')),
