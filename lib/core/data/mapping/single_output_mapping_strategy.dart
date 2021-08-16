@@ -1,5 +1,6 @@
 import '../../exports/app_dependencies.dart';
 import '../data.dart';
+import '../errors/mapping/mapping.dart';
 import '../models/base_model.dart';
 import 'mapping_strategy.dart';
 

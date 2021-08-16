@@ -1,5 +1,6 @@
 import '../../exports/app_dependencies.dart';
 import '../data.dart';
+import '../errors/mapping/mapping.dart';
 import 'mapping_strategy.dart';
 
 class MultipleOutputMappingStrategy implements MappingStrategy {
