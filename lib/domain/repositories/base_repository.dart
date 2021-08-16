@@ -12,6 +12,6 @@ abstract class BaseRepository {
   final LocalDatasource localDataSource;
   final ConnectionHandler connectionHandler;
 
-  Future<Either<Failure, List<Object>>> getAll();
+  Future<Either<Failure, List<Object>>> getAll({int? page = 1});
   Future<Either<Failure, List<Object>>> getSome({required List<int> ids});
 }

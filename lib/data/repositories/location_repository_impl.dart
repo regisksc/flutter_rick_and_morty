@@ -20,11 +20,16 @@ class LocationRepositoryImpl implements LocationRepository {
   final ConnectionHandler connectionHandler;
 
   @override
-  Future<Either<Failure, List<LocationEntity>>> getAll() async {
+  Future<Either<Failure, List<LocationEntity>>> getAll({int? page = 1}) async {
     late Either<Failure, List<LocationModel>> result;
     if (await connectionHandler.hasConnection) {
+      final query = {'page': page};
       result = await remoteDataSource.fetchMoreThanOneOutput(
-        httpParams: HttpRequestParams(httpMethod: HttpMethod.get, endpoint: makeApiUrl('location')),
+        httpParams: HttpRequestParams(
+          httpMethod: HttpMethod.get,
+          endpoint: makeApiUrl('location'),
+          queryParameters: query,
+        ),
         modelSerializer: LocationModel.fromMap,
       );
       return result.map((models) => models.toEntityList);

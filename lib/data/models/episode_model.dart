@@ -22,15 +22,17 @@ class EpisodeModel extends Model {
   List<Object?> get props => [id];
 
   static EpisodeModel fromMap(Map<String, dynamic> map) {
+    dynamic results = map;
+    if (map.containsKey('results')) results = results['results'];
     return EpisodeModel(
-      id: int.parse(map["id"].toString()),
-      characterIds: (map["characters"] as List)
+      id: int.parse(results["id"].toString()),
+      characterIds: (results["characters"] as List)
           .stringifyMembers
           .map((character) => int.parse(character.allAfter("character/")))
           .toList(),
-      name: map["name"].toString(),
-      airDate: map["airDate"].toString(),
-      episode: map["episode"].toString(),
+      name: results["name"].toString(),
+      airDate: results["airDate"].toString(),
+      episode: results["episode"].toString(),
     );
   }
 

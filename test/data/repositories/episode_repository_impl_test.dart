@@ -10,6 +10,7 @@ import 'package:flutter_rick_morty/data/repositories/episode_repository_impl.dar
 import 'package:flutter_rick_morty/domain/domain.dart';
 import 'package:flutter_rick_morty/domain/repositories/episode_repository.dart';
 
+import '../../test_utils/constants/data_type_test_constants.dart';
 import '../../test_utils/fixtures/fixture_reader.dart';
 import '../../test_utils/mocks/datasource_mocks.dart';
 import '../../test_utils/mocks/test_mocks.dart';
@@ -45,7 +46,11 @@ void main() {
   group('Get all Episodes', () {
     late HttpRequestParams httpParams;
     setUpAll(() {
-      httpParams = HttpRequestParams(httpMethod: HttpMethod.get, endpoint: makeApiUrl('episode'));
+      httpParams = HttpRequestParams(
+        httpMethod: HttpMethod.get,
+        endpoint: makeApiUrl('episode'),
+        queryParameters: mockQuery,
+      );
       registerFallbackValue(httpParams);
     });
     test(

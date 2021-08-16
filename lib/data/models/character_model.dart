@@ -32,18 +32,22 @@ class CharacterModel extends Model {
   List<Object?> get props => [id];
 
   static CharacterModel fromMap(Map<String, dynamic> map) {
+    dynamic results = map;
+    if (map.containsKey('results')) results = results['results'];
     return CharacterModel(
-      lastLocationId: int.parse(map['location']['url'].toString().allAfter('location/')),
-      originaryLocationId: int.parse(map['origin']['url'].toString().allAfter('location/')),
-      featuredEpisodeIds:
-          (map['episode'] as List).stringifyMembers.map((episode) => int.parse(episode.allAfter('episode/'))).toList(),
-      id: int.parse(map['id'].toString()),
-      name: map['name'].toString(),
-      status: map['status'].toString(),
-      species: map['species'].toString(),
-      type: map['type'].toString(),
-      gender: map['gender'].toString(),
-      image: map['image'].toString(),
+      lastLocationId: int.parse(results['location']['url'].toString().allAfter('location/')),
+      originaryLocationId: int.parse(results['origin']['url'].toString().allAfter('location/')),
+      featuredEpisodeIds: (results['episode'] as List)
+          .stringifyMembers
+          .map((episode) => int.parse(episode.allAfter('episode/')))
+          .toList(),
+      id: int.parse(results['id'].toString()),
+      name: results['name'].toString(),
+      status: results['status'].toString(),
+      species: results['species'].toString(),
+      type: results['type'].toString(),
+      gender: results['gender'].toString(),
+      image: results['image'].toString(),
     );
   }
 

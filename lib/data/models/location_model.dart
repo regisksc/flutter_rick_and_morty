@@ -22,15 +22,17 @@ class LocationModel extends Model {
   List<Object?> get props => [id];
 
   static LocationModel fromMap(Map<String, dynamic> map) {
+    dynamic results = map;
+    if (map.containsKey('results')) results = results['results'];
     return LocationModel(
-      id: int.parse(map['id'].toString()),
-      residentsIds: (map['residents'] as List)
+      id: int.parse(results['id'].toString()),
+      residentsIds: (results['residents'] as List)
           .stringifyMembers
           .map((character) => int.parse(character.allAfter('character/')))
           .toList(),
-      name: map['name'].toString(),
-      type: map['type'].toString(),
-      dimension: map['dimension'].toString(),
+      name: results['name'].toString(),
+      type: results['type'].toString(),
+      dimension: results['dimension'].toString(),
     );
   }
 

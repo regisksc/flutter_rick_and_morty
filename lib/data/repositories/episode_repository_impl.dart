@@ -20,11 +20,17 @@ class EpisodeRepositoryImpl implements EpisodeRepository {
   final ConnectionHandler connectionHandler;
 
   @override
-  Future<Either<Failure, List<EpisodeEntity>>> getAll() async {
+  Future<Either<Failure, List<EpisodeEntity>>> getAll({int? page = 1}) async {
     late Either<Failure, List<EpisodeModel>> result;
     if (await connectionHandler.hasConnection) {
+      final query = {'page': page};
+
       result = await remoteDataSource.fetchMoreThanOneOutput(
-        httpParams: HttpRequestParams(httpMethod: HttpMethod.get, endpoint: makeApiUrl('episode')),
+        httpParams: HttpRequestParams(
+          httpMethod: HttpMethod.get,
+          endpoint: makeApiUrl('episode'),
+          queryParameters: query,
+        ),
         modelSerializer: EpisodeModel.fromMap,
       );
       return result.map((models) => models.toEntityList);
