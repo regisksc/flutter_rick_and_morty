@@ -1,24 +1,17 @@
-// Package imports:
-
-// Project imports:
 import '../../../exports/app_dependencies.dart';
+import '../../storage/storage.dart';
 
-class LocalDatasource {
+class LocalDatasource implements StorageSave, StorageRead {
   LocalDatasource(GetStorage storage) : _storage = storage;
   final GetStorage _storage;
 
-  // @override
-  // Future<void> saveValue({required String key, required String value}) async {
-  //   await _storage.(key, value);
-  // }
+  @override
+  Future<void> save({required String key, required String value}) async {
+    await _storage.write(key, value);
+  }
 
-  // @override
-  // Future<void> deleteValue(String key) async {
-  //   await _storage.remove(key);
-  // }
-
-  // @override
-  // Future<String> getValue(String key) async {
-  //   return Future.value(_storage.getString(key));
-  // }
+  @override
+  Future<String?> read(String key) async {
+    if (_storage.hasData(key)) return _storage.read(key);
+  }
 }
