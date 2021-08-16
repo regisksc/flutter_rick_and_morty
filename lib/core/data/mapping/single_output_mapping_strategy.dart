@@ -12,7 +12,7 @@ class SingleOutputMappingStrategy implements MappingStrategy {
   final ModelSerializer modelSerializer;
 
   @override
-  Either<Failure, Output> call<Output extends BaseModel>(dynamic dataFromRemote) {
+  Either<Failure, Output> call<Output extends Model>(dynamic dataFromRemote) {
     if (dataFromRemote is Map<String, dynamic>) {
       return Right(modelSerializer(dataFromRemote) as Output);
     }

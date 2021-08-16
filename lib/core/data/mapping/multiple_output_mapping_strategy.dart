@@ -13,7 +13,7 @@ class MultipleOutputMappingStrategy implements MappingStrategy {
   List get _list => _mapOrListOfMap as List;
 
   @override
-  Either<InvalidMapFailure, List<Output>> call<Output extends BaseModel>(dynamic dataFromRemote) {
+  Either<InvalidMapFailure, List<Output>> call<Output extends Model>(dynamic dataFromRemote) {
     _mapOrListOfMap = dataFromRemote;
     try {
       dataFromRemote as Iterable;

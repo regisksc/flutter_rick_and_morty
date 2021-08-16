@@ -2,7 +2,7 @@
 import 'package:flutter_rick_morty/core/data/data.dart';
 import 'package:flutter_rick_morty/core/exports/exports.dart';
 
-class ModelMock extends Mock with EquatableMixin implements BaseModel {
+class ModelMock extends Mock with EquatableMixin implements Model {
   dynamic field;
 
   ModelMock fromMap(Map<String, dynamic> json) {

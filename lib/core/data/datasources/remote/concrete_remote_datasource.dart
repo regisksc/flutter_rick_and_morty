@@ -23,7 +23,7 @@ class ConcreteRemoteDatasource implements RemoteDatasource {
   }
 
   @override
-  Future<Either<Failure, Output>> fetchOneOutput<Output extends BaseModel>({
+  Future<Either<Failure, Output>> fetchOneOutput<Output extends Model>({
     required HttpRequestParams httpParams,
     required ModelSerializer modelSerializer,
   }) async {
@@ -38,7 +38,7 @@ class ConcreteRemoteDatasource implements RemoteDatasource {
   }
 
   @override
-  Future<Either<Failure, List<Output>>> fetchMoreThanOneOutput<Output extends BaseModel>({
+  Future<Either<Failure, List<Output>>> fetchMoreThanOneOutput<Output extends Model>({
     required HttpRequestParams httpParams,
     required ModelSerializer modelSerializer,
   }) async {
