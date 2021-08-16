@@ -44,7 +44,9 @@ class HttpAdapter implements HttpClient {
     Map<String, dynamic>? queryParameters,
     Options? options,
   }) async {
-    return _client.get(url, queryParameters: queryParameters, options: options);
+    if (method.toLowerCase() == 'get') {
+      return _client.get(url, queryParameters: queryParameters, options: options);
+    }
   }
 
   HttpResponse _handleSuccess(Response response) {
