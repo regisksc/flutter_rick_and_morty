@@ -44,18 +44,7 @@ class HttpAdapter implements HttpClient {
     Map<String, dynamic>? queryParameters,
     Options? options,
   }) async {
-    switch (method) {
-      case httpGet:
-        return _client.get(url, queryParameters: queryParameters, options: options);
-      case httpPost:
-        return _client.post(url, data: body, options: options);
-      case httpDelete:
-        return _client.delete(url, queryParameters: queryParameters, options: options, data: body);
-      case httpPut:
-        return _client.put(url, queryParameters: queryParameters, options: options, data: body);
-      case httpPatch:
-        return _client.patch(url, queryParameters: queryParameters, options: options, data: body);
-    }
+    return _client.get(url, queryParameters: queryParameters, options: options);
   }
 
   HttpResponse _handleSuccess(Response response) {
