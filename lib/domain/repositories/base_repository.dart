@@ -1,4 +1,7 @@
+import '../../core/domain/domain.dart';
+import '../../core/exports/app_dependencies.dart';
+
 abstract class BaseRepository {
-  Future<List<T>> getAll<T>();
-  Future<List<T>> getSome<T>();
+  Future<Either<Failure, List<T>>> getAll<T>();
+  Future<Either<Failure, List<T>>> getSome<T>();
 }
