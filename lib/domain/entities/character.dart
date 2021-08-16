@@ -1,5 +1,6 @@
 import '../../core/data/models/base_model.dart';
 import '../../core/domain/domain.dart';
+import '../../data/models/models.dart';
 import 'entities.dart';
 
 class Character extends Entity {
@@ -37,6 +38,16 @@ class Character extends Entity {
   List<Object?> get props => [id];
 
   @override
-  // TODO: implement toModel
-  Model get toModel => throw UnimplementedError();
+  Model get toModel => CharacterModel(
+        featuredEpisodeIds: featuredEpisodeIds,
+        lastLocationId: lastLocationId,
+        originaryLocationId: originaryLocationId,
+        id: id,
+        name: name,
+        status: status,
+        species: species,
+        type: type,
+        gender: gender,
+        image: image,
+      );
 }

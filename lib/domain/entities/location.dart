@@ -1,5 +1,6 @@
 import '../../core/data/models/base_model.dart';
 import '../../core/domain/domain.dart';
+import '../../data/models/models.dart';
 import 'entities.dart';
 
 class Location extends Entity {
@@ -23,6 +24,11 @@ class Location extends Entity {
   List<Object?> get props => [id];
 
   @override
-  // TODO: implement toModel
-  Model get toModel => throw UnimplementedError();
+  Model get toModel => LocationModel(
+        id: id,
+        residentsIds: residentsIds,
+        name: name,
+        type: type,
+        dimension: dimension,
+      );
 }

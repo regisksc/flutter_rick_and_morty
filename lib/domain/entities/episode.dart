@@ -1,5 +1,6 @@
 import '../../core/data/models/base_model.dart';
 import '../../core/domain/domain.dart';
+import '../../data/models/episode_model.dart';
 import 'entities.dart';
 
 class Episode extends Entity {
@@ -23,6 +24,11 @@ class Episode extends Entity {
   List<Object?> get props => [id];
 
   @override
-  // TODO: implement toModel
-  Model get toModel => throw UnimplementedError();
+  Model get toModel => EpisodeModel(
+        id: id,
+        characterIds: characterIds,
+        name: name,
+        airDate: airDate,
+        episode: episode,
+      );
 }
