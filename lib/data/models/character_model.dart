@@ -48,7 +48,7 @@ class CharacterModel extends Model {
   }
 
   @override
-  Character get toEntity => Character(
+  CharacterEntity get toEntity => CharacterEntity(
         lastLocationId: lastLocationId,
         originaryLocationId: originaryLocationId,
         featuredEpisodeIds: featuredEpisodeIds,

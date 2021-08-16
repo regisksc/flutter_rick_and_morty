@@ -35,7 +35,7 @@ class LocationModel extends Model {
   }
 
   @override
-  Location get toEntity => Location(
+  LocationEntity get toEntity => LocationEntity(
         id: id,
         residentsIds: residentsIds,
         name: name,

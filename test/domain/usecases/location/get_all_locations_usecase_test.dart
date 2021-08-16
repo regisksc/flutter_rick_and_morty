@@ -12,23 +12,23 @@ import '../../../test_utils/mocks/test_mocks.dart';
 void main() {
   late LocationRepository repository;
   late GetAllLocationsUsecase sut;
-  late List<Location> list;
+  late List<LocationEntity> list;
   setUp(() {
     repository = LocationRepositoryMock();
     sut = GetAllLocationsUsecase(repository);
-    list = <Location>[];
+    list = <LocationEntity>[];
   });
 
   test(
     'should return List<Location> on success',
     () async {
       // arrange
-      when(() => repository.getAll<Location>()).thenAnswer((_) async => Right(list));
+      when(() => repository.getAll<LocationEntity>()).thenAnswer((_) async => Right(list));
       // act
       final result = await sut(NoParams());
       final extractedResult = result.fold(id, id);
       // assert
-      expect(extractedResult, isA<List<Location>>());
+      expect(extractedResult, isA<List<LocationEntity>>());
     },
   );
 
@@ -36,7 +36,7 @@ void main() {
     'should return Failure when it fails',
     () async {
       // arrange
-      when(() => repository.getAll<Location>()).thenAnswer((_) async => Left(FailureMock()));
+      when(() => repository.getAll<LocationEntity>()).thenAnswer((_) async => Left(FailureMock()));
       // act
       final result = await sut(NoParams());
       final extractedResult = result.fold(id, id);

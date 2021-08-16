@@ -35,7 +35,7 @@ class EpisodeModel extends Model {
   }
 
   @override
-  Episode get toEntity => Episode(
+  EpisodeEntity get toEntity => EpisodeEntity(
         id: id,
         characterIds: characterIds,
         name: name,

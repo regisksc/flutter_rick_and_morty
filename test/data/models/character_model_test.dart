@@ -44,7 +44,7 @@ void main() {
       // act
       final sut = object.toEntity;
       // assert
-      expect(sut, isA<Character>());
+      expect(sut, isA<CharacterEntity>());
     },
   );
 }

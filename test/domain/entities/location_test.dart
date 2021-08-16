@@ -7,7 +7,7 @@ void main() {
     'should conver a Location into a CharacterModel',
     () async {
       // arrange
-      final entity = Location(
+      final entity = LocationEntity(
         id: 1,
         residentsIds: const [1],
         name: 'name',

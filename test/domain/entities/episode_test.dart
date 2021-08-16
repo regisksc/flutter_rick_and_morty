@@ -7,7 +7,7 @@ void main() {
     'should conver a Episode into a CharacterModel',
     () async {
       // arrange
-      final entity = Episode(
+      final entity = EpisodeEntity(
         id: 1,
         characterIds: const [1],
         name: 'name',

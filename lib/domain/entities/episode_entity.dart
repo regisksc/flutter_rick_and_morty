@@ -3,8 +3,8 @@ import '../../core/domain/domain.dart';
 import '../../data/models/episode_model.dart';
 import 'entities.dart';
 
-class Episode extends Entity {
-  Episode({
+class EpisodeEntity extends Entity {
+  EpisodeEntity({
     required this.id,
     required this.characterIds,
     required this.name,
@@ -18,7 +18,7 @@ class Episode extends Entity {
   final String name;
   final String airDate;
   final String episode;
-  List<Character>? characters;
+  List<CharacterEntity>? characters;
 
   @override
   List<Object?> get props => [id];

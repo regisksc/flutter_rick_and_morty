@@ -11,23 +11,23 @@ import '../../../test_utils/mocks/test_mocks.dart';
 void main() {
   late EpisodeRepository repository;
   late GetSomeEpisodesUsecase sut;
-  late List<Episode> list;
+  late List<EpisodeEntity> list;
   setUp(() {
     repository = EpisodeRepositoryMock();
     sut = GetSomeEpisodesUsecase(repository);
-    list = <Episode>[];
+    list = <EpisodeEntity>[];
   });
 
   test(
     'should return List<Episode> on success',
     () async {
       // arrange
-      when(() => repository.getSome<Episode>()).thenAnswer((_) async => Right(list));
+      when(() => repository.getSome<EpisodeEntity>()).thenAnswer((_) async => Right(list));
       // act
       final result = await sut(List<int>.generate(3, (index) => index));
       final extractedResult = result.fold(id, id);
       // assert
-      expect(extractedResult, isA<List<Episode>>());
+      expect(extractedResult, isA<List<EpisodeEntity>>());
     },
   );
 
@@ -35,7 +35,7 @@ void main() {
     'should return Failure when it fails',
     () async {
       // arrange
-      when(() => repository.getSome<Episode>()).thenAnswer((_) async => Left(FailureMock()));
+      when(() => repository.getSome<EpisodeEntity>()).thenAnswer((_) async => Left(FailureMock()));
       // act
       final result = await sut(List<int>.generate(3, (index) => index));
       final extractedResult = result.fold(id, id);

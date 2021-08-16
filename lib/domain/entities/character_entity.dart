@@ -3,8 +3,8 @@ import '../../core/domain/domain.dart';
 import '../../data/models/models.dart';
 import 'entities.dart';
 
-class Character extends Entity {
-  Character({
+class CharacterEntity extends Entity {
+  CharacterEntity({
     required this.lastLocationId,
     required this.originaryLocationId,
     required this.featuredEpisodeIds,
@@ -30,9 +30,9 @@ class Character extends Entity {
   final String type;
   final String gender;
   final String image;
-  List<Episode>? episodes;
-  Location? origin;
-  Location? location;
+  List<EpisodeEntity>? episodes;
+  LocationEntity? origin;
+  LocationEntity? location;
 
   @override
   List<Object?> get props => [id];
