@@ -1,6 +1,6 @@
+// Project imports:
 import 'package:flutter_rick_morty/core/data/data.dart';
 import 'package:flutter_rick_morty/core/exports/exports.dart';
-
 import '../../../../test_utils/constants/data_type_test_constants.dart';
 import '../../../../test_utils/mocks/test_mocks.dart';
 

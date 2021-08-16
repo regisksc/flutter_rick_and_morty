@@ -1,8 +1,9 @@
+// Dart imports:
 import 'dart:convert';
 
+// Project imports:
 import 'package:flutter_rick_morty/core/data/datasources/local/local_datasource.dart';
 import 'package:flutter_rick_morty/core/exports/exports.dart';
-
 import '../../../../test_utils/constants/data_type_test_constants.dart';
 
 class StorageMock extends Mock implements GetStorage {}
