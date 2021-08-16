@@ -1,4 +1,4 @@
-import 'package:flutter_rick_morty/core/data/errors/mapping_failures.dart';
+import 'package:flutter_rick_morty/core/data/errors/mapping/mapping.dart';
 import 'package:flutter_rick_morty/core/data/mapping/mapping.dart';
 import 'package:flutter_rick_morty/core/exports/app_dependencies.dart';
 import 'package:flutter_test/flutter_test.dart';
