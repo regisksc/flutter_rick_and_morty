@@ -28,10 +28,10 @@ void main() {
       final extractedResult = result.fold((failure) => failure, (resultList) => resultList);
 
       // assert
-      expect(extractedResult, [
-        ModelMock().fromMap(map),
-        ModelMock().fromMap(map),
-      ]);
+      expect(
+        extractedResult,
+        [ModelMock().fromMap(map), ModelMock().fromMap(map)],
+      );
     },
   );
 
