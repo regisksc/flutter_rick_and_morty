@@ -14,8 +14,8 @@ class MultipleOutputMappingStrategy implements MappingStrategy {
   @override
   Either<InvalidMapFailure, List<Output>> call<Output extends BaseModel>(dynamic dataFromRemote) {
     _mapOrListOfMap = dataFromRemote;
-    if (dataFromRemote is! List) throw _failure();
     try {
+      dataFromRemote as Iterable;
       final mappedIterable = _list.map((json) => modelSerializer(json as Map<String, dynamic>) as Output);
       return Right(mappedIterable.toList());
     } catch (e) {

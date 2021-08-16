@@ -1,3 +1,4 @@
+import '../../domain/domain.dart';
 import '../../exports/app_dependencies.dart';
 import '../data.dart';
 import '../errors/mapping/mapping.dart';
@@ -10,7 +11,7 @@ class SingleOutputMappingStrategy implements MappingStrategy {
   final ModelSerializer modelSerializer;
 
   @override
-  Either<InvalidMapFailure, Output> call<Output extends BaseModel>(dynamic dataFromRemote) {
+  Either<Failure, Output> call<Output extends BaseModel>(dynamic dataFromRemote) {
     if (dataFromRemote is Map<String, dynamic>) {
       return Right(modelSerializer(dataFromRemote) as Output);
     }
