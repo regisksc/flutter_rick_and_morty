@@ -1,4 +1,6 @@
 // Project imports:
+import 'dart:convert';
+
 import '../../../domain/domain.dart';
 import '../../../exports/app_dependencies.dart';
 import '../../data.dart';
@@ -47,7 +49,8 @@ class ConcreteRemoteDatasource implements RemoteDatasource {
       (failure) => Left(failure),
       (result) {
         final mapMany = MultipleOutputMappingStrategy(modelSerializer);
-        return mapMany<Output>(result.data);
+        final list = result.data is Iterable ? result.data : result.data['results'];
+        return mapMany<Output>(list);
       },
     );
   }

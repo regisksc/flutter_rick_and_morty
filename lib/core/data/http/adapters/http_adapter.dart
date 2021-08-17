@@ -1,4 +1,6 @@
 // Project imports:
+import 'dart:convert';
+
 import '../../../exports/app_dependencies.dart';
 import '../../data.dart';
 import '../http.dart';
@@ -29,6 +31,7 @@ class HttpAdapter implements HttpClient {
           ? Right(_handleSuccess(response!))
           : Left(_unexpectedFailure(response?.statusCode, response?.statusMessage));
     } on DioError catch (err) {
+      print(err.message);
       return Left(_unexpectedFailure(err.response?.statusCode, err.message));
     }
   }
@@ -51,12 +54,10 @@ class HttpAdapter implements HttpClient {
   }
 
   HttpResponse _handleSuccess(Response response) {
-    final responseData = (response.data ?? <String, dynamic>{}) as Map<String, dynamic>;
-    final message = responseData.containsKey('message') ? response.data['message'].toString() : '';
+    final decoded = json.decode(json.encode(response.data));
     return HttpResponse(
       code: response.statusCode!,
-      data: responseData,
-      message: message,
+      data: decoded,
     );
   }
 

@@ -35,13 +35,13 @@ class CharacterModel extends Model {
     dynamic results = map;
     if (map.containsKey('results')) results = map['results'];
     return CharacterModel(
-      lastLocationId: int.parse(results['location']['url'].toString().allAfter('location/')),
-      originaryLocationId: int.parse(results['origin']['url'].toString().allAfter('location/')),
+      lastLocationId: int.tryParse(results['location']['url'].toString().allAfter('location/')) ?? -1,
+      originaryLocationId: int.tryParse(results['origin']['url'].toString().allAfter('location/')) ?? -1,
       featuredEpisodeIds: (results['episode'] as List)
           .stringifyMembers
-          .map((episode) => int.parse(episode.allAfter('episode/')))
+          .map((episode) => int.tryParse(episode.allAfter('episode/')) ?? -1)
           .toList(),
-      id: int.parse(results['id'].toString()),
+      id: int.tryParse(results['id'].toString()) ?? -1,
       name: results['name'].toString(),
       status: results['status'].toString(),
       species: results['species'].toString(),

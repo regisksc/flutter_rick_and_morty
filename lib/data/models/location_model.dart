@@ -25,10 +25,10 @@ class LocationModel extends Model {
     dynamic results = map;
     if (map.containsKey('results')) results = map['results'];
     return LocationModel(
-      id: int.parse(results['id'].toString()),
+      id: int.tryParse(results['id'].toString()) ?? -1,
       residentsIds: (results['residents'] as List)
           .stringifyMembers
-          .map((character) => int.parse(character.allAfter('character/')))
+          .map((character) => int.tryParse(character.allAfter('character/')) ?? -1)
           .toList(),
       name: results['name'].toString(),
       type: results['type'].toString(),

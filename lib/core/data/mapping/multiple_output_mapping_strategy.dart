@@ -20,6 +20,7 @@ class MultipleOutputMappingStrategy implements MappingStrategy {
       final mappedIterable = _list.map((json) => modelSerializer(json as Map<String, dynamic>) as Output);
       return Right(mappedIterable.toList());
     } catch (e) {
+      print(e);
       return Left(_failure());
     }
   }
