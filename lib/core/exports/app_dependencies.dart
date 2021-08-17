@@ -1,4 +1,4 @@
-export 'package:dartz/dartz.dart' hide Evaluation;
+export 'package:dartz/dartz.dart' hide Evaluation, State;
 export 'package:equatable/equatable.dart';
 export 'package:dio/dio.dart';
 export 'package:data_connection_checker_tv/data_connection_checker.dart';

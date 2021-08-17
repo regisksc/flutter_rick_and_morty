@@ -47,7 +47,7 @@ class ConcreteRemoteDatasource implements RemoteDatasource {
       (failure) => Left(failure),
       (result) {
         final mapMany = MultipleOutputMappingStrategy(modelSerializer);
-        return mapMany<Output>(result.data as Iterable);
+        return mapMany<Output>(result.data);
       },
     );
   }
