@@ -31,6 +31,7 @@ class HttpAdapter implements HttpClient {
           ? Right(_handleSuccess(response!))
           : Left(_unexpectedFailure(response?.statusCode, response?.statusMessage));
     } on DioError catch (err) {
+      // ignore: avoid_print
       print(err.message);
       return Left(_unexpectedFailure(err.response?.statusCode, err.message));
     }

@@ -45,7 +45,7 @@ void main() {
       'should return a single Output ',
       () async {
         // arrange
-        final httpResponse = HttpResponse(code: 200, message: anyMessage, data: anyMap);
+        final httpResponse = HttpResponse(code: 200, data: anyMap);
         mockHttpRequest().thenAnswer((_) async => Right<HttpFailure, HttpResponse>(httpResponse));
         final httpParams = HttpRequestParams(
           httpMethod: method,
@@ -72,7 +72,7 @@ void main() {
       'should return a List of Output ',
       () async {
         // arrange
-        final httpResponse = HttpResponse(code: 200, message: anyMessage, data: [anyMap, anyMap]);
+        final httpResponse = HttpResponse(code: 200, data: [anyMap, anyMap]);
         mockHttpRequest().thenAnswer((_) async => Right<HttpFailure, HttpResponse>(httpResponse));
         final httpParams = HttpRequestParams(
           httpMethod: method,

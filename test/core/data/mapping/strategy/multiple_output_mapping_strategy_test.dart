@@ -1,4 +1,6 @@
 // Project imports:
+import 'dart:convert';
+
 import 'package:flutter_rick_morty/core/data/errors/mapping/mapping.dart';
 import 'package:flutter_rick_morty/core/data/mapping/mapping.dart';
 import 'package:flutter_rick_morty/core/exports/exports.dart';
@@ -24,7 +26,7 @@ void main() {
     'should return a list of needed Object',
     () async {
       // act
-      final result = sut<ModelMock>(list);
+      final result = sut<ModelMock>(json.decode(json.encode(list)));
       final extractedResult = result.fold((failure) => failure, (resultList) => resultList);
 
       // assert
@@ -42,7 +44,7 @@ void main() {
       const invalidMap = ['', false, 1];
 
       // act
-      final result = sut<ModelMock>(invalidMap);
+      final result = sut<ModelMock>(json.decode(json.encode(invalidMap)));
       final extractedResult = result.fold((failure) => failure, (resultList) => resultList);
 
       // assert
