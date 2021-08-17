@@ -25,10 +25,11 @@ class HttpAdapter implements HttpClient {
         queryParameters: queryParameters,
         options: options,
       );
-      if (isSuccess(response?.statusCode) == false) return Left(UnexpectedFailure(message: response?.statusMessage));
-      return Right(_handleSuccess(response!));
+      return isSuccess(response?.statusCode)
+          ? Right(_handleSuccess(response!))
+          : Left(_unexpectedFailure(response?.statusCode, response?.statusMessage));
     } on DioError catch (err) {
-      return Left(UnexpectedFailure(code: err.response?.statusCode, message: err.message));
+      return Left(_unexpectedFailure(err.response?.statusCode, err.message));
     }
   }
 
@@ -58,4 +59,6 @@ class HttpAdapter implements HttpClient {
       message: message,
     );
   }
+
+  UnexpectedFailure _unexpectedFailure(int? code, String? message) => UnexpectedFailure(code: code, message: message);
 }
