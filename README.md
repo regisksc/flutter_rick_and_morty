@@ -1,16 +1,35 @@
 # flutter_rick_morty
 
-A new Flutter project.
+This project aimed to practice flutter skills.
 
-## Getting Started
+## How to run:
 
-This project is a starting point for a Flutter application.
+#### make sure you are in project root and then
 
-A few resources to get you started if this is your first Flutter project:
+```python
+cd scrips
 
-- [Lab: Write your first Flutter app](https://flutter.dev/docs/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://flutter.dev/docs/cookbook)
+./runDev.sh # runs dev Flavor
+./runQa.sh # runs qa Flavor
+./runProd.sh # runs prod Flavor
+```
 
-For help getting started with Flutter, view our
-[online documentation](https://flutter.dev/docs), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+#### This repository features extra scripts:
+
+```python
+cd scrips # if you aren't already in this folder
+
+./runCodeMetrics.sh # generates code analysis
+./runFormat.sh # runs formatter to organize imports in whole project
+./runTests.sh # runs all unit tests in project
+./runIntegrationTests.sh # runs integration tests
+```
+
+# Contents
+
+- Clean Architecture
+- Design Patterns
+- Api communication
+- Simple State Management (Streams and setState)
+- Unit tests
+- Animations
