@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../../../../core/resources/constants/constants.dart';
+import '../../../../../../core/resources/constants/constants.dart';
 
 class CharacterInformationPill extends StatelessWidget {
   const CharacterInformationPill({

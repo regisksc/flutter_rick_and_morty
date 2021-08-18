@@ -1,13 +1,13 @@
 import 'package:flutter/material.dart';
 
-import '../../../core/data/data.dart';
-import '../../../core/env/flavors.dart';
-import '../../../core/exports/exports.dart';
-import '../../../core/presentation/presentation.dart';
-import '../../../data/repositories/repositories.dart';
-import '../../../domain/domain.dart';
-import '../../presenters/characters_presenter.dart';
-import 'character.dart';
+import '../../../../core/data/data.dart';
+import '../../../../core/env/flavors.dart';
+import '../../../../core/exports/exports.dart';
+import '../../../../core/presentation/presentation.dart';
+import '../../../../data/repositories/repositories.dart';
+import '../../../../domain/domain.dart';
+import '../../../presenters/characters_presenter.dart';
+import '../character.dart';
 
 class CharacterListPage extends StatefulWidget {
   const CharacterListPage({Key? key}) : super(key: key);

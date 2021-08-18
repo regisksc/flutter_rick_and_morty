@@ -2,9 +2,9 @@ import 'dart:math';
 
 import 'package:flutter/material.dart';
 
-import '../../../../../core/resources/constants/constants.dart';
-import '../../../../../domain/domain.dart';
-import '../../character.dart';
+import '../../../../../../core/resources/constants/constants.dart';
+import '../../../../../../domain/entities/entities.dart';
+import '../../../character.dart';
 
 class CharactersScrollWidget extends StatefulWidget {
   const CharactersScrollWidget({
