@@ -19,9 +19,9 @@ cd scrips
 ```python
 cd scrips # if you aren't already in this folder
 
-./runCodeMetrics.sh # generates code analysis
+./runCodeMetrics.sh # generates code analysis (visualize it in /metrics/index.html)
 ./runFormat.sh # runs formatter to organize imports in whole project
-./runTests.sh # runs all unit tests in project
+./runTests.sh # runs all unit tests in project and generates test coverage in files (visualize it in /coverage/index.html)
 ./runIntegrationTests.sh # runs integration tests
 ```
 
