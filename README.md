@@ -33,3 +33,7 @@ cd scrips # if you aren't already in this folder
 - Simple State Management (Streams and setState)
 - Unit tests
 - Animations
+
+# Observations
+
+- Sometimes the api returns a redirect to the same url, thus making the dio client enter a loop, restarting the app usually solves this.
