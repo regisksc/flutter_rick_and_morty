@@ -2,7 +2,7 @@
 
 ConcreteRemoteDatasource makeRemoteDatasource() => ConcreteRemoteDatasource(
       client: HttpAdapter(
-        injector.get<Dio>(),
+        Dio(),
       ),
       networkInfo: NetworkInfoAdapter(
         connectivity: injector.get<Connectivity>(),

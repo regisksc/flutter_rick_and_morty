@@ -21,10 +21,9 @@ class CharacterRepositoryImpl implements CharacterRepository {
 
   @override
   Future<Either<Failure, List<CharacterEntity>>> getAll({int? page = 1}) async {
-    late Either<Failure, List<CharacterModel>> result;
     if (await connectionHandler.hasConnection) {
       final query = {'page': page};
-      result = await remoteDataSource.fetchMoreThanOneOutput(
+      final Either<Failure, List<CharacterModel>> result = await remoteDataSource.fetchMoreThanOneOutput(
         httpParams: HttpRequestParams(
           httpMethod: HttpMethod.get,
           endpoint: makeApiUrl('character'),
@@ -34,9 +33,9 @@ class CharacterRepositoryImpl implements CharacterRepository {
       );
       return result.map((models) => models.toEntityList);
     } else {
-      final storedMap = json.decode((await localDataSource.read(StorageKeys.episodeKey)) ?? '[]') as List;
+      final storedMap = json.decode(json.encode(await localDataSource.read(StorageKeys.characterKey) ?? []));
       final entities = storedMap.map((map) => CharacterModel.fromMap(map as Map<String, dynamic>).toEntity).toList();
-      return Right(entities);
+      return Right(entities as List<CharacterEntity>);
     }
   }
 

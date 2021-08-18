@@ -1,6 +1,7 @@
 import 'package:flutter/material.dart';
 
 import '../../../../core/data/data.dart';
+import '../../../../core/data/datasources/remote/cache_data_decorator.dart';
 import '../../../../core/env/flavors.dart';
 import '../../../../core/exports/exports.dart';
 import '../../../../core/presentation/presentation.dart';
@@ -26,7 +27,8 @@ class _CharacterListPageState extends State<CharacterListPage> {
   late LocationRepository _locationRepository;
   late EpisodeRepository _episodeRepository;
   late ConnectionHandler _connectionHandler;
-  late RemoteDatasource _remoteDatasource;
+  late RemoteDatasource _cachingRemoteDS;
+  late RemoteDatasource _nonCachingRemoteDS;
   late LocalDatasource _localDatasource;
   late HttpClient _http;
 
@@ -37,22 +39,27 @@ class _CharacterListPageState extends State<CharacterListPage> {
 
     _http = HttpAdapter(dio);
     _connectionHandler = ConnectionHandler(DataConnectionChecker());
-    _remoteDatasource = ConcreteRemoteDatasource(client: _http);
     _localDatasource = LocalDatasource(GetStorage());
+    _nonCachingRemoteDS = ConcreteRemoteDatasource(client: _http);
+    _cachingRemoteDS = CacheDataDecorator(
+      decoratee: _nonCachingRemoteDS,
+      stash: _localDatasource,
+      keyToStoreAt: StorageKeys.characterKey,
+    );
     _characterRepository = CharacterRepositoryImpl(
       connectionHandler: _connectionHandler,
-      remoteDataSource: _remoteDatasource,
+      remoteDataSource: _cachingRemoteDS,
       localDataSource: _localDatasource,
     );
     _episodeRepository = EpisodeRepositoryImpl(
       connectionHandler: _connectionHandler,
       localDataSource: _localDatasource,
-      remoteDataSource: _remoteDatasource,
+      remoteDataSource: _nonCachingRemoteDS,
     );
     _locationRepository = LocationRepositoryImpl(
       connectionHandler: _connectionHandler,
       localDataSource: _localDatasource,
-      remoteDataSource: _remoteDatasource,
+      remoteDataSource: _nonCachingRemoteDS,
     );
     _getAllCharacters = GetAllCharactersUsecase(_characterRepository);
     _getSomeEpisodes = GetSomeEpisodesUsecase(_episodeRepository);

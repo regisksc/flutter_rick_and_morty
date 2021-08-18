@@ -29,7 +29,7 @@ void main() {
       // arrange
       final object = CharacterModel.fromMap(map);
       // act
-      final sut = object.toMap;
+      final sut = object.toJson;
       // assert
       expect(sut, isA<Map<String, dynamic>>());
     },

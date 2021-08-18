@@ -1,7 +1,7 @@
-import '../../core/data/models/models.dart';
-import '../../core/exports/app_dependencies.dart';
-import '../../core/resources/extensions/extensions.dart';
-import '../../domain/entities/entities.dart';
+import "../../core/data/models/models.dart";
+import "../../core/exports/app_dependencies.dart";
+import "../../core/resources/extensions/extensions.dart";
+import "../../domain/entities/entities.dart";
 
 class LocationModel extends Model {
   LocationModel({
@@ -23,16 +23,16 @@ class LocationModel extends Model {
 
   static LocationModel fromMap(Map<String, dynamic> map) {
     dynamic results = map;
-    if (map.containsKey('results')) results = map['results'];
+    if (map.containsKey("results")) results = map["results"];
     return LocationModel(
-      id: int.tryParse(results['id'].toString()) ?? -1,
-      residentsIds: (results['residents'] as List)
+      id: int.tryParse(results["id"].toString()) ?? -1,
+      residentsIds: (results["residents"] as List)
           .stringifyMembers
-          .map((character) => int.tryParse(character.allAfter('character/')) ?? -1)
+          .map((character) => int.tryParse(character.allAfter("character/")) ?? -1)
           .toList(),
-      name: results['name'].toString(),
-      type: results['type'].toString(),
-      dimension: results['dimension'].toString(),
+      name: results["name"].toString(),
+      type: results["type"].toString(),
+      dimension: results["dimension"].toString(),
     );
   }
 
@@ -46,12 +46,12 @@ class LocationModel extends Model {
       );
 
   @override
-  Map<String, dynamic> get toMap => {
-        'id': id,
-        'name': name,
-        'type': type,
-        'dimension': dimension,
-        'residents': residentsIds.map((residentId) => 'character/$residentId'),
+  Map<String, dynamic> get toJson => {
+        "id": id,
+        "name": name,
+        "type": type,
+        "dimension": dimension,
+        "residents": residentsIds.map((residentId) => "character/$residentId"),
       };
 }
 

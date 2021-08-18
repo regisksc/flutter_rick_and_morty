@@ -46,7 +46,7 @@ class EpisodeModel extends Model {
       );
 
   @override
-  Map<String, dynamic> get toMap => {
+  Map<String, dynamic> get toJson => {
         "id": id,
         "name": name,
         "air_date": airDate,

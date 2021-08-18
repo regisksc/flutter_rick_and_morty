@@ -28,7 +28,10 @@ class CacheDataDecorator implements RemoteDatasource {
       (success) {
         final copyList = <Output>[];
         success..forEach((model) => copyList.add(model));
-        stash.save(key: keyToStoreAt, value: json.encode(copyList.map((e) => e.toMap).toList()));
+        stash.save(
+          key: keyToStoreAt,
+          value: '${copyList.map((e) => e.toJson)}',
+        );
         return Right(success);
       },
     );
@@ -47,7 +50,7 @@ class CacheDataDecorator implements RemoteDatasource {
       (failure) => Left(failure),
       (success) {
         final copyModel = success;
-        stash.save(key: keyToStoreAt, value: json.encode(copyModel.toMap));
+        stash.save(key: keyToStoreAt, value: json.encode(copyModel.toJson));
         return Right(success);
       },
     );
