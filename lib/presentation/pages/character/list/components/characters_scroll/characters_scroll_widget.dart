@@ -89,7 +89,7 @@ class _CharactersScrollWidgetState extends State<CharactersScrollWidget> {
                                   );
                                 },
                                 pageBuilder: (context, animation, secondaryAnimation) {
-                                  return const CharacterDetailsPage();
+                                  return CharacterDetailsPage(character: character);
                                 },
                               ),
                             ),
@@ -100,9 +100,12 @@ class _CharactersScrollWidgetState extends State<CharactersScrollWidget> {
                                     topLeft: Radius.circular(15),
                                     topRight: Radius.circular(15),
                                   ),
-                                  child: Image.network(
-                                    character.image,
-                                    fit: BoxFit.fitWidth,
+                                  child: Hero(
+                                    tag: '${character.id}-${character.name}',
+                                    child: Image.network(
+                                      character.image,
+                                      fit: BoxFit.fitWidth,
+                                    ),
                                   ),
                                 ),
                                 Positioned(
