@@ -14,6 +14,7 @@ class App extends StatelessWidget {
     EquatableConfig.stringify = true;
     return MaterialApp(
       title: AppFlavor.title,
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         primarySwatch: Colors.blue,
         textTheme: TextTheme(

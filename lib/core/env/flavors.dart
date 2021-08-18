@@ -10,11 +10,11 @@ class AppFlavor {
   static String get title {
     switch (current) {
       case Flavor.dev:
-        return 'Rick and Morty Characters (Dev)';
+        return 'Characters (Dev)';
       case Flavor.qa:
-        return 'Rick and Morty Characters (Testing)';
+        return 'Characters (Testing)';
       case Flavor.prod:
-        return 'Rick and Morty Characters (Prod)';
+        return 'Characters (Prod)';
       default:
         return 'title';
     }

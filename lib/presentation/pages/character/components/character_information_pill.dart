@@ -13,9 +13,11 @@ class CharacterInformationPill extends StatelessWidget {
   final String value;
   @override
   Widget build(BuildContext context) {
+    final spacing = MediaQuery.of(context).size.height * .02;
     const _labelBackgroundColor = AppColors.green;
     return Container(
       width: double.infinity,
+      margin: EdgeInsets.only(top: spacing),
       decoration: BoxDecoration(
         borderRadius: BorderRadius.circular(15),
       ),

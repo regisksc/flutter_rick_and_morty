@@ -4,6 +4,7 @@ import '../../../../core/data/data.dart';
 import '../../../../core/env/flavors.dart';
 import '../../../../core/exports/exports.dart';
 import '../../../../core/presentation/presentation.dart';
+import '../../../../core/resources/constants/constants.dart';
 import '../../../../data/repositories/repositories.dart';
 import '../../../../domain/domain.dart';
 import '../../../presenters/characters_presenter.dart';
@@ -68,23 +69,28 @@ class _CharacterListPageState extends State<CharacterListPage> {
   @override
   Widget build(BuildContext context) {
     final size = MediaQuery.of(context).size;
-    return Scaffold(
-      appBar: AppBar(title: Text(AppFlavor.title)),
-      body: Center(
-        child: StreamBuilder<UiStates>(
-          stream: presenter.pageState,
-          builder: (_, state) {
-            final characters = presenter.entities as List<CharacterEntity>;
-            switch (state.data) {
-              case UiStates.fullyLoaded:
-                return CharactersScrollWidget(
-                  size: size,
-                  characters: characters,
-                );
-              default:
-                return const CircularProgressIndicator();
-            }
-          },
+    return SafeArea(
+      child: Scaffold(
+        appBar: AppBar(
+          backgroundColor: AppColors.lightGreenAcc,
+          title: Center(child: Text(AppFlavor.title)),
+        ),
+        body: Center(
+          child: StreamBuilder<UiStates>(
+            stream: presenter.pageState,
+            builder: (_, state) {
+              final characters = presenter.entities as List<CharacterEntity>;
+              switch (state.data) {
+                case UiStates.fullyLoaded:
+                  return CharactersScrollWidget(
+                    size: size,
+                    characters: characters,
+                  );
+                default:
+                  return const CircularProgressIndicator();
+              }
+            },
+          ),
         ),
       ),
     );

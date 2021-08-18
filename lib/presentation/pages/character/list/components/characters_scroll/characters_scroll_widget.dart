@@ -80,9 +80,9 @@ class _CharactersScrollWidgetState extends State<CharactersScrollWidget> {
                             onTap: () => Navigator.push(
                               context,
                               PageRouteBuilder(
-                                transitionDuration: const Duration(milliseconds: 1000),
+                                transitionDuration: const Duration(milliseconds: 700),
                                 transitionsBuilder: (context, animation, secondaryAnimation, child) {
-                                  animation = CurvedAnimation(parent: animation, curve: Curves.elasticOut);
+                                  animation = CurvedAnimation(parent: animation, curve: Curves.easeInOutCirc);
                                   return ScaleTransition(
                                     scale: animation,
                                     child: child,
@@ -125,12 +125,14 @@ class _CharactersScrollWidgetState extends State<CharactersScrollWidget> {
                                       ],
                                     ),
                                     alignment: Alignment.centerLeft,
-                                    child: Text(
-                                      character.name,
-                                      style: Theme.of(context).textTheme.headline1,
-                                      overflow: TextOverflow.clip,
-                                      maxLines: 2,
-                                    ),
+                                    child: Hero(
+                                        tag: character.name,
+                                        child: Text(
+                                          character.name,
+                                          style: Theme.of(context).textTheme.headline1,
+                                          overflow: TextOverflow.clip,
+                                          maxLines: 2,
+                                        )),
                                   ),
                                 ),
                                 Positioned(
@@ -148,23 +150,12 @@ class _CharactersScrollWidgetState extends State<CharactersScrollWidget> {
                                         bottomRight: Radius.circular(15),
                                       ),
                                     ),
-                                    padding: const EdgeInsets.fromLTRB(10, 15, 10, 0),
+                                    padding: const EdgeInsets.symmetric(horizontal: 10),
                                     margin: EdgeInsets.only(top: boxHeight / 2),
                                     child: Column(
                                       mainAxisAlignment: MainAxisAlignment.center,
                                       children: [
-                                        CharacterInformationPill(label: 'Species', value: character.species),
-                                        SizedBox(height: boxHeight * .03),
-                                        CharacterInformationPill(label: 'Gender', value: character.gender),
-                                        SizedBox(height: boxHeight * .03),
-                                        CharacterInformationPill(label: 'Status', value: character.status),
-                                        SizedBox(height: boxHeight * .03),
-                                        CharacterInformationPill(label: 'Origin', value: character.origin?.name ?? '?'),
-                                        SizedBox(height: boxHeight * .03),
-                                        CharacterInformationPill(
-                                          label: 'Last seen',
-                                          value: character.location?.name ?? '?',
-                                        ),
+                                        BasicCharacterInformation(character: character),
                                       ],
                                     ),
                                   ),
@@ -181,6 +172,34 @@ class _CharactersScrollWidgetState extends State<CharactersScrollWidget> {
             ),
           );
         },
+      ),
+    );
+  }
+}
+
+class BasicCharacterInformation extends StatelessWidget {
+  const BasicCharacterInformation({
+    Key? key,
+    required this.character,
+  }) : super(key: key);
+
+  final CharacterEntity character;
+
+  @override
+  Widget build(BuildContext context) {
+    return Hero(
+      tag: 'info-${character.id}-${character.name}',
+      child: Column(
+        children: [
+          CharacterInformationPill(label: 'Species', value: character.species),
+          CharacterInformationPill(label: 'Gender', value: character.gender),
+          CharacterInformationPill(label: 'Status', value: character.status),
+          CharacterInformationPill(label: 'Origin', value: character.origin?.name ?? '?'),
+          CharacterInformationPill(
+            label: 'Last seen',
+            value: character.location?.name ?? '?',
+          ),
+        ],
       ),
     );
   }
