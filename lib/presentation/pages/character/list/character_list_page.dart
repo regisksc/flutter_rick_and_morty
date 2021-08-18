@@ -18,52 +18,52 @@ class CharacterListPage extends StatefulWidget {
 }
 
 class _CharacterListPageState extends State<CharacterListPage> {
-  late CharactersPresenter presenter;
-  late GetAllCharactersUsecase getAllCharacters;
-  late GetSomeLocationsUsecase getSomeLocations;
-  late GetSomeEpisodesUsecase getSomeEpisodes;
-  late CharacterRepository characterRepository;
-  late LocationRepository locationRepository;
-  late EpisodeRepository episodeRepository;
-  late ConnectionHandler connectionHandler;
-  late RemoteDatasource remoteDatasource;
-  late LocalDatasource localDatasource;
-  late HttpClient http;
+  late CharactersPresenter _presenter;
+  late GetAllCharactersUsecase _getAllCharacters;
+  late GetSomeLocationsUsecase _getSomeLocations;
+  late GetSomeEpisodesUsecase _getSomeEpisodes;
+  late CharacterRepository _characterRepository;
+  late LocationRepository _locationRepository;
+  late EpisodeRepository _episodeRepository;
+  late ConnectionHandler _connectionHandler;
+  late RemoteDatasource _remoteDatasource;
+  late LocalDatasource _localDatasource;
+  late HttpClient _http;
+
   @override
   void initState() {
     super.initState();
     final dio = Dio();
-    // dio.interceptors..add(logginInterceptor());
 
-    http = HttpAdapter(dio);
-    connectionHandler = ConnectionHandler(DataConnectionChecker());
-    remoteDatasource = ConcreteRemoteDatasource(client: http);
-    localDatasource = LocalDatasource(GetStorage());
-    characterRepository = CharacterRepositoryImpl(
-      connectionHandler: connectionHandler,
-      remoteDataSource: remoteDatasource,
-      localDataSource: localDatasource,
+    _http = HttpAdapter(dio);
+    _connectionHandler = ConnectionHandler(DataConnectionChecker());
+    _remoteDatasource = ConcreteRemoteDatasource(client: _http);
+    _localDatasource = LocalDatasource(GetStorage());
+    _characterRepository = CharacterRepositoryImpl(
+      connectionHandler: _connectionHandler,
+      remoteDataSource: _remoteDatasource,
+      localDataSource: _localDatasource,
     );
-    episodeRepository = EpisodeRepositoryImpl(
-      connectionHandler: connectionHandler,
-      localDataSource: localDatasource,
-      remoteDataSource: remoteDatasource,
+    _episodeRepository = EpisodeRepositoryImpl(
+      connectionHandler: _connectionHandler,
+      localDataSource: _localDatasource,
+      remoteDataSource: _remoteDatasource,
     );
-    locationRepository = LocationRepositoryImpl(
-      connectionHandler: connectionHandler,
-      localDataSource: localDatasource,
-      remoteDataSource: remoteDatasource,
+    _locationRepository = LocationRepositoryImpl(
+      connectionHandler: _connectionHandler,
+      localDataSource: _localDatasource,
+      remoteDataSource: _remoteDatasource,
     );
-    getAllCharacters = GetAllCharactersUsecase(characterRepository);
-    getSomeEpisodes = GetSomeEpisodesUsecase(episodeRepository);
-    getSomeLocations = GetSomeLocationsUsecase(locationRepository);
-    presenter = CharactersPresenter(
-      getAllCharacters: getAllCharacters,
-      getSomeLocations: getSomeLocations,
-      getSomeEpisodes: getSomeEpisodes,
+    _getAllCharacters = GetAllCharactersUsecase(_characterRepository);
+    _getSomeEpisodes = GetSomeEpisodesUsecase(_episodeRepository);
+    _getSomeLocations = GetSomeLocationsUsecase(_locationRepository);
+    _presenter = CharactersPresenter(
+      getAllCharacters: _getAllCharacters,
+      getSomeLocations: _getSomeLocations,
+      getSomeEpisodes: _getSomeEpisodes,
     );
 
-    presenter.onInit();
+    _presenter.onInit();
   }
 
   @override
@@ -71,18 +71,28 @@ class _CharacterListPageState extends State<CharacterListPage> {
     final size = MediaQuery.of(context).size;
     return SafeArea(
       child: Scaffold(
+        backgroundColor: Colors.blue[50],
         appBar: AppBar(
           backgroundColor: AppColors.lightGreenAcc,
           title: Center(child: Text(AppFlavor.title)),
         ),
         body: Center(
           child: StreamBuilder<UiStates>(
-            stream: presenter.pageState,
+            stream: _presenter.pageState,
             builder: (_, state) {
-              final characters = presenter.entities as List<CharacterEntity>;
+              final characters = _presenter.entities as List<CharacterEntity>;
               switch (state.data) {
+                case UiStates.error:
+                  return Container(
+                    padding: const EdgeInsets.symmetric(horizontal: 25),
+                    child: const Text(
+                      'Oops, something happenned while fetching your data. Please try again!',
+                      textAlign: TextAlign.center,
+                    ),
+                  );
                 case UiStates.fullyLoaded:
                   return CharactersScrollWidget(
+                    presenter: _presenter,
                     size: size,
                     characters: characters,
                   );

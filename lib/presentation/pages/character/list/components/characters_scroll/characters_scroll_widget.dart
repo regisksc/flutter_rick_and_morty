@@ -4,6 +4,7 @@ import 'package:flutter/material.dart';
 
 import '../../../../../../core/resources/constants/constants.dart';
 import '../../../../../../domain/entities/entities.dart';
+import '../../../../../presenters/characters_presenter.dart';
 import '../../../character.dart';
 
 class CharactersScrollWidget extends StatefulWidget {
@@ -11,30 +12,33 @@ class CharactersScrollWidget extends StatefulWidget {
     Key? key,
     required this.size,
     required this.characters,
+    required this.presenter,
   }) : super(key: key);
 
   final Size size;
   final List<CharacterEntity> characters;
+  final CharactersPresenter presenter;
 
   @override
   _CharactersScrollWidgetState createState() => _CharactersScrollWidgetState();
 }
 
 class _CharactersScrollWidgetState extends State<CharactersScrollWidget> {
-  late PageController pageController;
+  late PageController _pageController;
   double? _currentPage = 0;
-  void _currentPageFeed() => setState(() => _currentPage = pageController.page);
+  bool canFetch = true;
+  void _currentPageListener() => setState(() => _currentPage = _pageController.page);
   @override
   void initState() {
     super.initState();
-    pageController = PageController(viewportFraction: 0.7);
-    pageController.addListener(_currentPageFeed);
+    _pageController = PageController(viewportFraction: 0.7);
+    _pageController.addListener(_currentPageListener);
   }
 
   @override
   void dispose() {
-    pageController.removeListener(_currentPageFeed);
-    pageController.dispose();
+    _pageController.removeListener(_currentPageListener);
+    _pageController.dispose();
     super.dispose();
   }
 
@@ -47,7 +51,14 @@ class _CharactersScrollWidgetState extends State<CharactersScrollWidget> {
         borderRadius: BorderRadius.circular(15),
       ),
       child: PageView.builder(
-        controller: pageController,
+        controller: _pageController,
+        onPageChanged: (page) async {
+          if (page == widget.characters.length - 1 && canFetch) {
+            canFetch = false;
+            await widget.presenter.loadCharacters();
+            canFetch = true;
+          }
+        },
         itemCount: widget.characters.length,
         clipBehavior: Clip.antiAliasWithSaveLayer,
         physics: const BouncingScrollPhysics(),

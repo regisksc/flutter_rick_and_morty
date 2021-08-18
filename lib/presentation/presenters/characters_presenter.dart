@@ -29,10 +29,17 @@ class CharactersPresenter implements Presenter {
   @override
   Future onInit() async {
     _pageStateController.add(UiStates.initial);
+    await loadCharacters();
+  }
+
+  Future<void> loadCharacters() async {
+    // ignore: avoid_print
+    print('Fetching data!');
     final charactersCandidate = await _loadCharacters();
     if (charactersCandidate is Failure) _pageStateController.add(UiStates.error);
     if (charactersCandidate is! Failure) {
-      final characters = _addInitialData(charactersCandidate);
+      currentPage++;
+      final characters = _getInitialData(charactersCandidate);
       final listOfQueries = <Future>[];
       _organizeRemainingDataFetchingTasks(characters, listOfQueries);
       _executeRemainingDataFetchingTasks(listOfQueries);
@@ -42,13 +49,11 @@ class CharactersPresenter implements Presenter {
 
   void _addFinalData(List<CharacterEntity> characters) {
     _pageStateController.add(UiStates.fullyLoaded);
-    entities.clear();
     entities.addAll(characters);
   }
 
-  List<CharacterEntity> _addInitialData(Object charactersCandidate) {
+  List<CharacterEntity> _getInitialData(Object charactersCandidate) {
     final characters = charactersCandidate as List<CharacterEntity>;
-    entities.addAll(characters);
     _pageStateController.add(UiStates.partiallyLoaded);
     return characters;
   }
