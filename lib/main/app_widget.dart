@@ -4,7 +4,7 @@ import 'package:flutter/material.dart';
 import '../core/env/flavors.dart';
 import '../core/exports/app_dependencies.dart';
 import '../core/resources/constants/constants.dart';
-import '../pages/my_home_page.dart';
+import '../presentation/presentation.dart';
 
 // Project imports:
 
@@ -37,7 +37,7 @@ class App extends StatelessWidget {
           ),
         ),
       ),
-      home: MyHomePage(),
+      home: const CharacterListPage(),
     );
   }
 }
