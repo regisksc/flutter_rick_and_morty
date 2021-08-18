@@ -50,6 +50,7 @@ class _CharactersScrollWidgetState extends State<CharactersScrollWidget> {
         controller: pageController,
         itemCount: widget.characters.length,
         clipBehavior: Clip.antiAliasWithSaveLayer,
+        physics: const BouncingScrollPhysics(),
         itemBuilder: (context, index) {
           final character = widget.characters[index];
           double percentage = index - (_currentPage ?? 0) + 1;
@@ -75,80 +76,98 @@ class _CharactersScrollWidgetState extends State<CharactersScrollWidget> {
                         final boxWidth = constraints.biggest.width;
                         return Transform.scale(
                           scale: 1.5,
-                          child: Stack(
-                            children: [
-                              ClipRRect(
-                                borderRadius: const BorderRadius.only(
-                                  topLeft: Radius.circular(15),
-                                  topRight: Radius.circular(15),
-                                ),
-                                child: Image.network(
-                                  character.image,
-                                  fit: BoxFit.fitWidth,
-                                ),
+                          child: GestureDetector(
+                            onTap: () => Navigator.push(
+                              context,
+                              PageRouteBuilder(
+                                transitionDuration: const Duration(milliseconds: 1000),
+                                transitionsBuilder: (context, animation, secondaryAnimation, child) {
+                                  animation = CurvedAnimation(parent: animation, curve: Curves.elasticOut);
+                                  return ScaleTransition(
+                                    scale: animation,
+                                    child: child,
+                                  );
+                                },
+                                pageBuilder: (context, animation, secondaryAnimation) {
+                                  return const CharacterDetailsPage();
+                                },
                               ),
-                              Positioned(
-                                bottom: boxHeight / 1.8,
-                                child: Container(
-                                  margin: const EdgeInsets.symmetric(horizontal: 15),
-                                  height: boxHeight * .1,
-                                  width: boxWidth / 2,
-                                  decoration: const BoxDecoration(
-                                    boxShadow: [
-                                      BoxShadow(
-                                        blurRadius: 35,
-                                        offset: Offset(10, 0),
-                                        spreadRadius: 15,
-                                        color: Colors.white,
-                                      ),
-                                    ],
+                            ),
+                            child: Stack(
+                              children: [
+                                ClipRRect(
+                                  borderRadius: const BorderRadius.only(
+                                    topLeft: Radius.circular(15),
+                                    topRight: Radius.circular(15),
                                   ),
-                                  alignment: Alignment.centerLeft,
-                                  child: Text(
-                                    character.name,
-                                    style: Theme.of(context).textTheme.headline1,
-                                    overflow: TextOverflow.clip,
-                                    maxLines: 2,
+                                  child: Image.network(
+                                    character.image,
+                                    fit: BoxFit.fitWidth,
                                   ),
                                 ),
-                              ),
-                              Positioned(
-                                bottom: 15,
-                                child: Container(
-                                  height: boxHeight / 2,
-                                  width: boxWidth,
-                                  decoration: BoxDecoration(
-                                    color: AppColors.yellow,
-                                    border: Border.all(
-                                      color: Colors.blue,
+                                Positioned(
+                                  bottom: boxHeight / 1.8,
+                                  child: Container(
+                                    margin: const EdgeInsets.symmetric(horizontal: 15),
+                                    height: boxHeight * .1,
+                                    width: boxWidth / 2,
+                                    decoration: const BoxDecoration(
+                                      boxShadow: [
+                                        BoxShadow(
+                                          blurRadius: 35,
+                                          offset: Offset(10, 0),
+                                          spreadRadius: 15,
+                                          color: Colors.white,
+                                        ),
+                                      ],
                                     ),
-                                    borderRadius: const BorderRadius.only(
-                                      bottomLeft: Radius.circular(15),
-                                      bottomRight: Radius.circular(15),
+                                    alignment: Alignment.centerLeft,
+                                    child: Text(
+                                      character.name,
+                                      style: Theme.of(context).textTheme.headline1,
+                                      overflow: TextOverflow.clip,
+                                      maxLines: 2,
                                     ),
-                                  ),
-                                  padding: const EdgeInsets.fromLTRB(10, 15, 10, 0),
-                                  margin: EdgeInsets.only(top: boxHeight / 2),
-                                  child: Column(
-                                    mainAxisAlignment: MainAxisAlignment.center,
-                                    children: [
-                                      CharacterInformationPill(label: 'Species', value: character.species),
-                                      SizedBox(height: boxHeight * .03),
-                                      CharacterInformationPill(label: 'Gender', value: character.gender),
-                                      SizedBox(height: boxHeight * .03),
-                                      CharacterInformationPill(label: 'Status', value: character.status),
-                                      SizedBox(height: boxHeight * .03),
-                                      CharacterInformationPill(label: 'Origin', value: character.origin?.name ?? '?'),
-                                      SizedBox(height: boxHeight * .03),
-                                      CharacterInformationPill(
-                                        label: 'Last seen',
-                                        value: character.location?.name ?? '?',
-                                      ),
-                                    ],
                                   ),
                                 ),
-                              )
-                            ],
+                                Positioned(
+                                  bottom: 15,
+                                  child: Container(
+                                    height: boxHeight / 2,
+                                    width: boxWidth,
+                                    decoration: BoxDecoration(
+                                      color: AppColors.yellow,
+                                      border: Border.all(
+                                        color: Colors.blue,
+                                      ),
+                                      borderRadius: const BorderRadius.only(
+                                        bottomLeft: Radius.circular(15),
+                                        bottomRight: Radius.circular(15),
+                                      ),
+                                    ),
+                                    padding: const EdgeInsets.fromLTRB(10, 15, 10, 0),
+                                    margin: EdgeInsets.only(top: boxHeight / 2),
+                                    child: Column(
+                                      mainAxisAlignment: MainAxisAlignment.center,
+                                      children: [
+                                        CharacterInformationPill(label: 'Species', value: character.species),
+                                        SizedBox(height: boxHeight * .03),
+                                        CharacterInformationPill(label: 'Gender', value: character.gender),
+                                        SizedBox(height: boxHeight * .03),
+                                        CharacterInformationPill(label: 'Status', value: character.status),
+                                        SizedBox(height: boxHeight * .03),
+                                        CharacterInformationPill(label: 'Origin', value: character.origin?.name ?? '?'),
+                                        SizedBox(height: boxHeight * .03),
+                                        CharacterInformationPill(
+                                          label: 'Last seen',
+                                          value: character.location?.name ?? '?',
+                                        ),
+                                      ],
+                                    ),
+                                  ),
+                                ),
+                              ],
+                            ),
                           ),
                         );
                       },
