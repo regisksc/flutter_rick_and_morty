@@ -1,4 +1,6 @@
-import 'package:flutter/foundation.dart';
+import 'dart:async';
+
+import 'package:flutter/material.dart';
 
 import '../../core/domain/domain.dart';
 import '../../core/exports/app_dependencies.dart';
@@ -16,6 +18,8 @@ class CharactersPresenter implements Presenter {
   final GetSomeLocationsUsecase getSomeLocations;
   final GetSomeEpisodesUsecase getSomeEpisodes;
 
+  final _pageStateController = StreamController<UiStates>.broadcast();
+
   @override
   int currentPage = 1;
 
@@ -24,16 +28,29 @@ class CharactersPresenter implements Presenter {
 
   @override
   Future onInit() async {
+    _pageStateController.add(UiStates.initial);
     final charactersCandidate = await _loadCharacters();
-    if (charactersCandidate is Failure) pageState.value = UiStates.error;
+    if (charactersCandidate is Failure) _pageStateController.add(UiStates.error);
     if (charactersCandidate is! Failure) {
-      final characters = charactersCandidate as List<CharacterEntity>;
-      pageState.value = UiStates.partiallyLoaded;
+      final characters = _addInitialData(charactersCandidate);
       final listOfQueries = <Future>[];
       _organizeRemainingDataFetchingTasks(characters, listOfQueries);
       _executeRemainingDataFetchingTasks(listOfQueries);
-      pageState.value = UiStates.fullyLoaded;
+      _addFinalData(characters);
     }
+  }
+
+  void _addFinalData(List<CharacterEntity> characters) {
+    _pageStateController.add(UiStates.fullyLoaded);
+    entities.clear();
+    entities.addAll(characters);
+  }
+
+  List<CharacterEntity> _addInitialData(Object charactersCandidate) {
+    final characters = charactersCandidate as List<CharacterEntity>;
+    entities.addAll(characters);
+    _pageStateController.add(UiStates.partiallyLoaded);
+    return characters;
   }
 
   void _executeRemainingDataFetchingTasks(List<Future<dynamic>> listOfQueries) {
@@ -92,5 +109,7 @@ class CharactersPresenter implements Presenter {
   }
 
   @override
-  ValueNotifier<UiStates> get pageState => ValueNotifier(UiStates.initial);
+  Stream<UiStates> get pageState => _pageStateController.stream;
+
+  final ValueNotifier<double> animationNotifier = ValueNotifier(0);
 }
