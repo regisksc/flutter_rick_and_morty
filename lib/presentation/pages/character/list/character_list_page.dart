@@ -76,8 +76,6 @@ class _CharacterListPageState extends State<CharacterListPage> {
           builder: (_, state) {
             final characters = presenter.entities as List<CharacterEntity>;
             switch (state.data) {
-              case UiStates.partiallyLoaded:
-                return const ColoredBox(color: Colors.yellow);
               case UiStates.fullyLoaded:
                 return CharactersScrollWidget(
                   size: size,
