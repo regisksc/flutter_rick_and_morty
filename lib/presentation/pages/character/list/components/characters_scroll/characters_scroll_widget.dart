@@ -53,7 +53,7 @@ class _CharactersScrollWidgetState extends State<CharactersScrollWidget> {
       child: PageView.builder(
         controller: _pageController,
         onPageChanged: (page) async {
-          if (page == widget.characters.length - 1 && canFetch) {
+          if (page == widget.characters.length - 2 && canFetch) {
             canFetch = false;
             await widget.presenter.loadCharacters();
             canFetch = true;

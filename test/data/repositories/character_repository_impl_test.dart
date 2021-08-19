@@ -86,7 +86,7 @@ void main() {
         // arrange
         when(() => connectionHandler.hasConnection).thenAnswer((_) async => false);
         when(
-          () => localDatasource.read(StorageKeys.episodeKey),
+          () => localDatasource.read(any()),
         ).thenAnswer((_) async => json.encode(fixtureJson));
         // act
         final result = await sut.getAll();
@@ -100,7 +100,7 @@ void main() {
         );
         verifyInOrder([
           () => connectionHandler.hasConnection,
-          () => localDatasource.read(StorageKeys.episodeKey),
+          () => localDatasource.read(any()),
         ]);
         expect(extractedResult, isA<List<CharacterEntity>>());
       },

@@ -33,9 +33,10 @@ class CharacterRepositoryImpl implements CharacterRepository {
       );
       return result.map((models) => models.toEntityList);
     } else {
-      final storedMap = json.decode(json.encode(await localDataSource.read(StorageKeys.characterKey) ?? []));
-      final entities = storedMap.map((map) => CharacterModel.fromMap(map as Map<String, dynamic>).toEntity).toList();
-      return Right(entities as List<CharacterEntity>);
+      final storedMap = json.decode(await localDataSource.read(StorageKeys.characterKey) ?? '[]');
+      final entities =
+          (storedMap as List).map((map) => CharacterModel.fromMap(map as Map<String, dynamic>).toEntity).toList();
+      return Right(entities);
     }
   }
 
